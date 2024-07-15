@@ -54,7 +54,7 @@ namespace SLZ.Marrow.Interaction
 
 		[SerializeField]
 		[Header("Physics")]
-		private Vector3 _originalScale = Vector3.one;
+		private Vector3 _originalScale;
 
 		[SerializeField]
 		private MarrowBody[] _bodies;

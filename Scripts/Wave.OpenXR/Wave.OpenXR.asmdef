@@ -1,0 +1,8 @@
+{
+  "name": "Wave.OpenXR",
+  "references": [
+    "Unity.XR.OpenXR",
+    "Unity.InputSystem"
+  ],
+  "allowUnsafeCode": true
+}

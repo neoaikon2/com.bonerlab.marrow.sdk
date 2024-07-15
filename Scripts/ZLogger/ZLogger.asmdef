@@ -1,0 +1,13 @@
+{
+  "name": "ZLogger",
+  "references": [
+    "Microsoft.Extensions.Logging.Abstractions",
+    "Microsoft.Extensions.Logging.Configuration",
+    "Microsoft.Extensions.Options.ConfigurationExtensions",
+    "Microsoft.Extensions.Configuration.Abstractions",
+    "Microsoft.Extensions.Logging",
+    "Microsoft.Extensions.DependencyInjection.Abstractions",
+    "Microsoft.Extensions.Options"
+  ],
+  "allowUnsafeCode": true
+}

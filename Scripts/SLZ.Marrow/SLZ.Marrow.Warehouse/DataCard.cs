@@ -143,4 +143,5 @@ namespace SLZ.Marrow.Warehouse
             return (T)CreateDataCard(typeof(T), pallet, title, generateBarcode);
         }
     }
+
 }

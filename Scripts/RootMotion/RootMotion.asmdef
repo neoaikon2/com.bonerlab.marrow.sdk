@@ -1,3 +1,5 @@
 {
-	"name": "RootMotion"
+  "name": "RootMotion",
+  "references": [],
+  "allowUnsafeCode": true
 }

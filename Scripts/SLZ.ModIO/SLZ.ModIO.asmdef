@@ -1,0 +1,8 @@
+{
+  "name": "SLZ.ModIO",
+  "references": [
+    "Newtonsoft.Json",
+    "Microsoft.Extensions.Logging.Abstractions"
+  ],
+  "allowUnsafeCode": true
+}

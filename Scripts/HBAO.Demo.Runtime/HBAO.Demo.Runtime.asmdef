@@ -1,0 +1,7 @@
+{
+  "name": "HBAO.Demo.Runtime",
+  "references": [
+    "HBAO.Runtime"
+  ],
+  "allowUnsafeCode": true
+}

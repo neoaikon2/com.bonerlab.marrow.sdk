@@ -1,0 +1,7 @@
+{
+  "name": "Oculus.VR",
+  "references": [
+    "Unity.XR.OpenXR"
+  ],
+  "allowUnsafeCode": true
+}
