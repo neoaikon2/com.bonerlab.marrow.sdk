@@ -13,6 +13,10 @@ namespace SLZ.Marrow.Pool
 	{
 		private readonly SpawnableCrate _crate;
 
+		private bool _hasTemplateObject;
+
+		private bool _isTemplateLoading;
+
 		private GameObject _templateObject;
 
 		private readonly Transform _parentTransform;
@@ -28,7 +32,7 @@ namespace SLZ.Marrow.Pool
 		public Pool(SpawnableCrate sc, Transform rootTransform = null)
 		{
 		}
-		internal UniTask<Poolee> Spawn(Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, bool forceInstantiation = false)
+		internal UniTask<Poolee> Spawn(Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, Transform parent = null, bool forceInstantiation = false)
 		{
 			return default(UniTask<Poolee>);
 		}

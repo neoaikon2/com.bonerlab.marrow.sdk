@@ -2,8 +2,8 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_player_controller")]
+[RequireComponent(typeof(CharacterController))]
 public class OVRPlayerController : MonoBehaviour
 {
 	public float Acceleration;

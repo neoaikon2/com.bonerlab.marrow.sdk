@@ -67,6 +67,8 @@ namespace RootMotion.FinalIK
 			{
 			}
 		}
+
+
 		[Tooltip("If you have multiple IK components, then this should be the one that solves last each frame.")]
 		public IK ik;
 
@@ -119,6 +121,7 @@ namespace RootMotion.FinalIK
 		public void Start()
 		{
 		}
+
 		private IEnumerator DisableRagdollSmooth()
 		{
 			return null;

@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(OVRVirtualKeyboardSampleInputHandler))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_virtual_keyboard_sample_controls")]
+[RequireComponent(typeof(OVRVirtualKeyboardSampleInputHandler))]
 public class OVRVirtualKeyboardSampleControls : MonoBehaviour
 {
 	private struct OVRVirtualKeyboardBackup

@@ -3,8 +3,8 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.XR;
 
-[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_overlay")]
 [ExecuteInEditMode]
+[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_overlay")]
 public class OVROverlay : MonoBehaviour
 {
 	public enum OverlayShape

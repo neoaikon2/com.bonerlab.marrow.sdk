@@ -15,8 +15,8 @@ public class OVRPassthroughColorLut : IDisposable
 
 	private struct WriteColorsAsBytesJob : IJobParallelFor
 	{
-		[WriteOnly]
 		[NativeDisableParallelForRestriction]
+		[WriteOnly]
 		public NativeArray<byte> target;
 
 		[NativeDisableParallelForRestriction]
@@ -36,8 +36,8 @@ public class OVRPassthroughColorLut : IDisposable
 		{
 			public TextureSettings settings;
 
-			[NativeDisableParallelForRestriction]
 			[WriteOnly]
+			[NativeDisableParallelForRestriction]
 			public NativeArray<byte> target;
 
 			[ReadOnly]

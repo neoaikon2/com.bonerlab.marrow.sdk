@@ -20,8 +20,8 @@ namespace SLZ.Data
 			public bool useVertexColor;
 		}
 
-		[Header("Options")]
 		[Range(0.001f, 1f)]
+		[Header("Options")]
 		public float PenetrationResistance;
 
 		public float megaPascal;

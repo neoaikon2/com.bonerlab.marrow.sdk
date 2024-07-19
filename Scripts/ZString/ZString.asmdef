@@ -1,5 +1,7 @@
 {
   "name": "ZString",
-  "references": [],
+  "references": [
+    "Unity.TextMeshPro"
+  ],
   "allowUnsafeCode": true
 }

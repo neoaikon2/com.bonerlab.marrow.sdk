@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[Support(SupportFlags.Supported, null)]
 	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/RemapNode")]
 	[AddComponentMenu("VoidLogic/Nodes/VoidLogic Remap")]
+	[Support(SupportFlags.Supported, null)]
 	public class RemapNode : BaseNode
 	{
-		[Tooltip("Output response curve")]
 		[SerializeField]
+		[Tooltip("Output response curve")]
 		private AnimationCurve _remapCurve;
 
 		private static readonly PortMetadata _portMetadata;

@@ -1,7 +1,7 @@
- 
- 
-using SLZ.Marrow.Warehouse;
+
+
 using SLZ.Marrow.Interaction;
+using SLZ.Marrow.Warehouse;
 using UnityEngine;
 
 namespace SLZ.Marrow.Zones
@@ -11,7 +11,7 @@ namespace SLZ.Marrow.Zones
         [SerializeField]
         protected Zone _zone;
         public MarrowQuery activatorTags = new();
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
         protected virtual void Reset()
         {
             var query = new TagQuery();
@@ -23,7 +23,8 @@ namespace SLZ.Marrow.Zones
                 return;
             _zone = transform.parent.GetComponent<Zone>();
         }
-        //#endif
+#endif
+
         protected virtual void OnEnter(MarrowEntity entity)
         {
         }

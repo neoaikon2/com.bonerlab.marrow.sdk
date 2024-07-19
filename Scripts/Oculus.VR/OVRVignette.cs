@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Camera))]
-[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_vignette")]
 [ExecuteInEditMode]
+[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_vignette")]
 public class OVRVignette : MonoBehaviour
 {
 	public enum MeshComplexityLevel
@@ -27,12 +27,12 @@ public class OVRVignette : MonoBehaviour
 	[HideInInspector]
 	private Shader VignetteShader;
 
-	[SerializeField]
 	[Tooltip("Controls the number of triangles used for the vignette mesh. Normal is best for most purposes.")]
+	[SerializeField]
 	private MeshComplexityLevel MeshComplexity;
 
-	[Tooltip("Controls how the falloff looks.")]
 	[SerializeField]
+	[Tooltip("Controls how the falloff looks.")]
 	private FalloffType Falloff;
 
 	[Tooltip("The Vertical FOV of the vignette")]
@@ -44,8 +44,8 @@ public class OVRVignette : MonoBehaviour
 	[Tooltip("The width of the falloff for the vignette in degrees")]
 	public float VignetteFalloffDegrees;
 
-	[Tooltip("The color of the vignette. Alpha value is ignored")]
 	[ColorUsage(false)]
+	[Tooltip("The color of the vignette. Alpha value is ignored")]
 	public Color VignetteColor;
 
 	private Camera _Camera;

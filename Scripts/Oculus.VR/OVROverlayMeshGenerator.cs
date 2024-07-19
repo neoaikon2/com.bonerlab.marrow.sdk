@@ -3,9 +3,9 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[ExecuteAlways]
 [RequireComponent(typeof(MeshFilter))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_overlay_mesh_generator")]
+[ExecuteAlways]
 [RequireComponent(typeof(MeshRenderer))]
 public class OVROverlayMeshGenerator : MonoBehaviour
 {

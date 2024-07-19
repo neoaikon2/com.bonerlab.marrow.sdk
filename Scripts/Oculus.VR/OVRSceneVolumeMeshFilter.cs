@@ -7,8 +7,8 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_volume_mesh_filter")]
 [RequireComponent(typeof(MeshFilter))]
+[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_volume_mesh_filter")]
 public class OVRSceneVolumeMeshFilter : MonoBehaviour
 {
 	private struct GetTriangleMeshCountsJob : IJob

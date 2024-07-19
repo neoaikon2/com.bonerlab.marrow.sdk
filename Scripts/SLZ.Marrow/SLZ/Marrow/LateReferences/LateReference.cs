@@ -11,12 +11,12 @@ namespace SLZ.Marrow.LateReferences
 		[field: ReadOnly(false)]
 		public string StaticType { get; private protected set; }
 
-		[field: ReadOnly(false)]
 		[field: SerializeField]
+		[field: ReadOnly(false)]
 		public string DynamicType { get; private protected set; }
 
-		[field: ReadOnly(false)]
 		[field: SerializeField]
+		[field: ReadOnly(false)]
 		public string UniqueId { get; protected internal set; }
 
 		public bool ReferenceLinked { get; private protected set; }

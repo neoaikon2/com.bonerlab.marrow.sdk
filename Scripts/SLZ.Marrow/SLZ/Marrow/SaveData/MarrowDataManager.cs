@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace SLZ.Marrow.SaveData
 {
-	public abstract class MarrowDataManager<TDataManager, TSave, TSettings, TProgression, TUnlocks> where TDataManager : MarrowDataManager<TDataManager, TSave, TSettings, TProgression, TUnlocks> where TSave : class, ISave<TProgression, TUnlocks>, new() where TSettings : class, ISettings, new() where TProgression : class, IProgression, new() where TUnlocks : class, IUnlocks, new()
+	public abstract class MarrowDataManager<TDataManager, TSave, TSettings, TPlayerSettings, TProgression, TUnlocks> where TDataManager : MarrowDataManager<TDataManager, TSave, TSettings, TPlayerSettings, TProgression, TUnlocks> where TSave : class, ISave<TPlayerSettings, TProgression, TUnlocks>, new() where TSettings : class, ISettings, new() where TPlayerSettings : class, IPlayerSettings, new() where TProgression : class, IProgression, new() where TUnlocks : class, IUnlocks, new()
 	{
 		protected internal static TDataManager _instance;
 
@@ -28,6 +28,26 @@ namespace SLZ.Marrow.SaveData
 		public static string SavePath => null;
 
 		protected internal DateTime LastWriteTime { get; private set; }
+
+		public bool TrySaveSettings()
+		{
+			return false;
+		}
+
+		public bool TryLoadActiveSave(SaveFlags flags)
+		{
+			return false;
+		}
+
+		public bool TrySaveActiveSave(SaveFlags flags)
+		{
+			return false;
+		}
+
+		public bool TryAutosaveAndSetActive(TSave save, SaveFlags flags)
+		{
+			return false;
+		}
 
 		private bool _tryReadAndParseSettings(out TSettings settings)
 		{

@@ -8,10 +8,10 @@ namespace SLZ.Marrow.Zones
 		[SerializeField]
 		private bool PrimeZoneOnly;
 
+		[Header("Light properties")]
 		[Range(0f, 180f)]
 		[SerializeField]
 		[Space(5f)]
-		[Header("Light properties")]
 		private float SpotLightAngle;
 
 		[SerializeField]
@@ -26,8 +26,8 @@ namespace SLZ.Marrow.Zones
 		[SerializeField]
 		private bool EnableShadows;
 
-		[HideInInspector]
 		[SerializeField]
+		[HideInInspector]
 		private GameObject LightObject;
 
 		[SerializeField]

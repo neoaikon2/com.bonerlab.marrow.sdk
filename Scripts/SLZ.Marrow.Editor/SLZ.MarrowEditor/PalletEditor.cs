@@ -9,6 +9,8 @@ using UnityEngine;
 using UnityEditor;
 using SLZ.Marrow.Warehouse;
 
+ 
+
 namespace SLZ.MarrowEditor
 {
     [CustomEditor(typeof(Pallet))]
@@ -24,14 +26,17 @@ namespace SLZ.MarrowEditor
         SerializedProperty palletDepsProperty;
         SerializedProperty marrowGameProperty;
         private bool createCrateFoldout;
+        private bool createDataCardFoldout;
         private bool packFoldout;
-        public Texture2D crateIcon;
-        public Texture2D levelIcon;
-        public Texture2D avatarIcon;
-        public Texture2D packPalletIcon;
+        private Texture2D crateAddIcon;
+        private Texture2D dataCardAddIcon;
+        private Texture2D levelIcon;
+        private Texture2D avatarIcon;
+        private Texture2D packPalletIcon;
         Pallet pallet;
         private static bool packing = false;
         private Nullable<bool> installSuccess = null;
+        private static Dictionary<Type, Texture2D> scannableIconCache = new Dictionary<Type, Texture2D>();
         public override bool ShowUnlockableRedactedFields()
         {
             return false;
@@ -49,16 +54,53 @@ namespace SLZ.MarrowEditor
             changelogProperty = serializedObject.FindProperty("_changeLogs");
             palletDepsProperty = serializedObject.FindProperty("_palletDependencies");
             pallet = (Pallet)serializedObject.targetObject;
-            createCrateFoldout = pallet.Crates.Count <= 0 && pallet.DataCards.Count <= 0;
+            createCrateFoldout = pallet.Crates.Count <= 0;
+            createDataCardFoldout = false;
             packFoldout = Directory.Exists(AddressablesManager.EvaluateProfileValueBuildPathForPallet(pallet, AddressablesManager.ProfilePalletID));
-            if (crateIcon == null)
-                crateIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/crate-add.png"));
+            if (crateAddIcon == null)
+                crateAddIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/crate-add.png"));
+            if (dataCardAddIcon == null)
+                dataCardAddIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/datacard-add.png"));
             if (levelIcon == null)
                 levelIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/crate-level.png"));
             if (avatarIcon == null)
                 avatarIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/crate-avatar.png"));
             if (packPalletIcon == null)
                 packPalletIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/packed-pallet.png"));
+            if (!scannableIconCache.ContainsKey(typeof(DataCard)))
+            {
+                scannableIconCache[typeof(DataCard)] = AssetDatabase.LoadAssetAtPath<Texture2D>(MarrowSDK.GetPackagePath("Editor/Assets/Icons/Warehouse/datacard.png"));
+            }
+
+            var dataCardTypes = TypeCache.GetTypesDerivedFrom(typeof(DataCard));
+            if (scannableIconCache.Count == 1 && dataCardTypes.Count > 0)
+            {
+                string dataCardScriptsPath = String.Empty;
+                foreach (var dataCardType in dataCardTypes)
+                {
+                    if (!scannableIconCache.TryGetValue(dataCardType, out var dataCardIcon))
+                    {
+                        if (string.IsNullOrEmpty(dataCardScriptsPath))
+                        {
+                            DataCard dataCard = CreateInstance(dataCardType) as DataCard;
+                            dataCardScriptsPath = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(dataCard)).Replace($"{dataCardType.Name}.cs", "");
+                            DestroyImmediate(dataCard);
+                        }
+
+                        var dataCardMonoScript = AssetDatabase.LoadAssetAtPath<MonoScript>($"{dataCardScriptsPath}/{dataCardType.Name}.cs");
+                        if (dataCardMonoScript != null)
+                        {
+                            dataCardIcon = EditorGUIUtility.GetIconForObject(dataCardMonoScript);
+                        }
+                        else
+                        {
+                            dataCardIcon = scannableIconCache[typeof(DataCard)];
+                        }
+
+                        scannableIconCache[dataCardType] = dataCardIcon;
+                    }
+                }
+            }
         }
 
         public override void OnInspectorGUI()
@@ -93,7 +135,7 @@ namespace SLZ.MarrowEditor
                     using (new GUILayout.VerticalScope())
                     {
                         GUILayout.FlexibleSpace();
-                        if (GUILayout.Button(new GUIContent(" New Crate", crateIcon, "Create a new Crate"), GUILayout.ExpandWidth(false), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 6.5f)))
+                        if (GUILayout.Button(new GUIContent(" New Crate", crateAddIcon, "Create a new Crate"), GUILayout.ExpandWidth(false), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 6.5f)))
                         {
                             createCrateFoldout = !createCrateFoldout;
                         }
@@ -106,7 +148,7 @@ namespace SLZ.MarrowEditor
                         using (new GUILayout.VerticalScope())
                         {
                             GUILayout.FlexibleSpace();
-                            EditorGUILayout.LabelField(new GUIContent("|"), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
+                            EditorGUILayout.LabelField(new GUIContent("|"), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
                             GUILayout.FlexibleSpace();
                         }
                     }
@@ -116,7 +158,7 @@ namespace SLZ.MarrowEditor
                         using (new GUILayout.VerticalScope())
                         {
                             GUILayout.FlexibleSpace();
-                            EditorGUILayout.LabelField(new GUIContent("\u25ba"), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
+                            EditorGUILayout.LabelField(new GUIContent("\u25ba"), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
                             GUILayout.FlexibleSpace();
                         }
 
@@ -147,6 +189,88 @@ namespace SLZ.MarrowEditor
 
                     GUILayout.FlexibleSpace();
                 }
+            }
+
+            EditorGUILayout.Space();
+            using (new GUILayout.VerticalScope())
+            {
+                using (new GUILayout.HorizontalScope())
+                {
+                    using (new GUILayout.VerticalScope())
+                    {
+                        if (GUILayout.Button(new GUIContent(" New DataCard", dataCardAddIcon, "Create a new DataCard"), GUILayout.ExpandWidth(false), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 6.5f)))
+                        {
+                            createDataCardFoldout = !createDataCardFoldout;
+                        }
+
+                        GUILayout.FlexibleSpace();
+                    }
+
+                    if (!createDataCardFoldout)
+                    {
+                        using (new GUILayout.VerticalScope())
+                        {
+                            EditorGUILayout.LabelField(new GUIContent("|"), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
+                            GUILayout.FlexibleSpace();
+                        }
+                    }
+
+                    if (createDataCardFoldout)
+                    {
+                        using (new GUILayout.VerticalScope())
+                        {
+                            EditorGUILayout.LabelField(new GUIContent("\u25ba"), GUILayout.Height(EditorGUIUtility.singleLineHeight * 2), GUILayout.MaxWidth(EditorGUIUtility.singleLineHeight * 1.5f));
+                            GUILayout.FlexibleSpace();
+                        }
+
+                        using (new GUILayout.VerticalScope())
+                        {
+                            var dataCardTypes = TypeCache.GetTypesDerivedFrom(typeof(DataCard));
+                            int rowCount = 1;
+                            foreach (var dataCardType in dataCardTypes)
+                            {
+                                if (rowCount == 1)
+                                {
+                                    GUILayout.BeginHorizontal();
+                                }
+                                else if (rowCount == 2)
+                                {
+                                }
+
+                                if (scannableIconCache.TryGetValue(dataCardType, out var dataCardIcon))
+                                {
+                                    using (new GUILayout.VerticalScope())
+                                    {
+                                        GUILayout.FlexibleSpace();
+                                        if (GUILayout.Button(new GUIContent($" {dataCardType.Name}", dataCardIcon, $"Create a new {dataCardType.Name}"), GUILayout.ExpandWidth(false)))
+                                        {
+                                            DataCardCreatorEditor.ShowWindow(dataCardType, pallet);
+                                        }
+
+                                        GUILayout.FlexibleSpace();
+                                    }
+
+                                    rowCount++;
+                                    if (rowCount == 3)
+                                    {
+                                        GUILayout.EndHorizontal();
+                                        rowCount = 1;
+                                    }
+                                }
+                            }
+
+                            if (rowCount == 2)
+                            {
+                                GUILayout.EndHorizontal();
+                                EditorGUILayout.Space(EditorGUIUtility.singleLineHeight / 8f);
+                            }
+                        }
+                    }
+
+                    GUILayout.FlexibleSpace();
+                }
+
+                GUILayout.FlexibleSpace();
             }
 
             EditorGUILayout.Space();
@@ -191,13 +315,13 @@ namespace SLZ.MarrowEditor
                             GUILayout.FlexibleSpace();
                             if (GUILayout.Button(new GUIContent("Pack for PC", "Build the pallet for PC"), GUILayout.ExpandWidth(false)))
                             {
-                                PackPalletWithValidation(pallet, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64).Forget();
+                                PackPalletWithValidation(pallet, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, EditorPrefs.GetBool("PackWithDedupe", false)).Forget();
                                 installSuccess = null;
                             }
 
                             if (GUILayout.Button(new GUIContent("Pack for Quest", "Build the pallet for Android"), GUILayout.ExpandWidth(false)))
                             {
-                                PackPalletWithValidation(pallet, BuildTargetGroup.Android, BuildTarget.Android).Forget();
+                                PackPalletWithValidation(pallet, BuildTargetGroup.Android, BuildTarget.Android, EditorPrefs.GetBool("PackWithDedupe", false)).Forget();
                                 installSuccess = null;
                             }
 
@@ -257,16 +381,6 @@ namespace SLZ.MarrowEditor
             }
 
             LockedPropertyField(dataCardsProperty, false);
-            if (GUILayout.Button(new GUIContent("Add BoneTag", "Add a BoneTag to the Asset Warehouse"), GUILayout.ExpandWidth(false)))
-            {
-                DataCardCreatorEditor.ShowWindowBoneTag(pallet);
-            }
-
-            if (GUILayout.Button(new GUIContent("Add MonoDisc", "Add a MonoDisc to the Asset Warehouse"), GUILayout.ExpandWidth(false)))
-            {
-                DataCardCreatorEditor.ShowWindowMonoDisc(pallet);
-            }
-
             if (EditorGUI.EndChangeCheck())
             {
             }

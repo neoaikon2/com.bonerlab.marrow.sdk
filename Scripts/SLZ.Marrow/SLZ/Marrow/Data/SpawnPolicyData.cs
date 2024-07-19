@@ -22,7 +22,7 @@ namespace SLZ.Marrow.Data
 		[Tooltip("Determines what happens when a pool reaches the max size")]
 		public PolicyRule mode;
 
-		[Tooltip("Skips Enable/Disable phase of the poolee in cases where it is recycled on the same frame")]
-		public bool canHotPool;
+		[Tooltip("Skips Disable phase of the pool spawning")]
+		public bool skipDisable;
 	}
 }

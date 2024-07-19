@@ -29,8 +29,7 @@ namespace SLZ.Marrow.Forklift
 		[field: SerializeField]
 		public string ModIOApiKey { get; private set; }
 
-		[field: SerializeField]
-		public int ModIOGameId { get; private set; }
+		public int ModIOGameId => 0;
 
 		public bool IsLoggedIn { get; private set; }
 

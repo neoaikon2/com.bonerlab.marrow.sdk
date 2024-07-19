@@ -84,8 +84,8 @@ namespace SLZ.Marrow.PuppetMasta
 
 		public bool roamWanders;
 
-		[Header("Investigate State")]
 		[Range(4f, 16f)]
+		[Header("Investigate State")]
 		public float investigateRange;
 
 		[Header("Agro State General")]

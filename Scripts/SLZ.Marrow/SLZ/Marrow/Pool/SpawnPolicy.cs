@@ -13,12 +13,18 @@ namespace SLZ.Marrow.Pool
 	{
 		protected readonly List<Poolee> _poolees;
 
-		protected int _requestedSpawns;
-		public virtual UniTask<Poolee> Spawn(Pool pool, SpawnPolicyData policyData, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null)
+		private int _requestedSpawns;
+
+		private readonly SpawnPolicyData _data;
+
+		public SpawnPolicy(SpawnPolicyData data)
+		{
+		}
+		public virtual UniTask<Poolee> Spawn(Pool pool, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, Transform parent = null)
 		{
 			return default(UniTask<Poolee>);
 		}
-		protected virtual UniTask<Poolee> SpawnFromPool(Pool pool, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null)
+		protected virtual UniTask<Poolee> SpawnFromPool(Pool pool, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, Transform parent = null)
 		{
 			return default(UniTask<Poolee>);
 		}
@@ -27,7 +33,7 @@ namespace SLZ.Marrow.Pool
 		{
 		}
 
-		public virtual bool Despawn(Pool pool, Poolee poolee, bool skipDisable = false)
+		public virtual bool Despawn(Pool pool, Poolee poolee)
 		{
 			return false;
 		}

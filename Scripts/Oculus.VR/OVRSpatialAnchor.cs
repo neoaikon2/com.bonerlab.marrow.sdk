@@ -58,10 +58,6 @@ public class OVRSpatialAnchor : MonoBehaviour
 
 		public Pose Pose => default(Pose);
 
-		public void Localize(Action<UnboundAnchor, bool> onComplete = null, double timeout = 0.0)
-		{
-		}
-
 		private void ValidateLocalization()
 		{
 		}
@@ -84,6 +80,11 @@ public class OVRSpatialAnchor : MonoBehaviour
 			_space = default(OVRSpace);
 			Uuid = default(Guid);
 		}
+
+		[Obsolete("Use LocalizeAsync instead.")]
+		public void Localize(Action<UnboundAnchor, bool> onComplete = null, double timeout = 0.0)
+		{
+		}
 	}
 
 	private enum MultiAnchorActionType
@@ -94,8 +95,8 @@ public class OVRSpatialAnchor : MonoBehaviour
 
 	private static class Development
 	{
-		[Conditional("UNITY_EDITOR")]
 		[Conditional("DEVELOPMENT_BUILD")]
+		[Conditional("UNITY_EDITOR")]
 		public static void Log(string message)
 		{
 		}
@@ -106,9 +107,15 @@ public class OVRSpatialAnchor : MonoBehaviour
 		{
 		}
 
-		[Conditional("UNITY_EDITOR")]
 		[Conditional("DEVELOPMENT_BUILD")]
+		[Conditional("UNITY_EDITOR")]
 		public static void LogError(string message)
+		{
+		}
+
+		[Conditional("DEVELOPMENT_BUILD")]
+		[Conditional("UNITY_EDITOR")]
+		public static void LogRequestOrError(ulong requestId, OVRPlugin.Result result, string successMessage, string failureMessage)
 		{
 		}
 
@@ -187,19 +194,18 @@ public class OVRSpatialAnchor : MonoBehaviour
 
 	private static readonly Dictionary<ulong, MultiAnchorDelegatePair> MultiAnchorCompletionDelegates;
 
-	private static readonly List<UnboundAnchor> UnboundAnchorBuffer;
+	internal OVRAnchor _anchor { get; private set; }
 
-	private static readonly OVRPlugin.SpaceComponentType[] ComponentTypeBuffer;
-
-	public OVRSpace Space { get; private set; }
-
-	public Guid Uuid { get; private set; }
+	public Guid Uuid => default(Guid);
 
 	public bool Created => false;
 
 	public bool PendingCreation => false;
 
 	public bool Localized => false;
+
+	[Obsolete("This property exposes an internal handle that should no longer be necessary. You can Save, Erase, and Share anchors using the methods in this class.")]
+	public OVRSpace Space => default(OVRSpace);
 
 	public event Action<OperationResult> OnLocalize
 	{
@@ -213,21 +219,9 @@ public class OVRSpatialAnchor : MonoBehaviour
 		}
 	}
 
-	public void InitializeFromExisting(OVRSpace space, Guid uuid)
-	{
-	}
-
-	public void Save(Action<OVRSpatialAnchor, bool> onComplete = null)
-	{
-	}
-
 	private static NativeArray<ulong> ToNativeArray(ICollection<OVRSpatialAnchor> anchors)
 	{
 		return default(NativeArray<ulong>);
-	}
-
-	public void Save(SaveOptions saveOptions, Action<OVRSpatialAnchor, bool> onComplete = null)
-	{
 	}
 
 	public OVRTask<bool> SaveAsync()
@@ -240,8 +234,9 @@ public class OVRSpatialAnchor : MonoBehaviour
 		return default(OVRTask<bool>);
 	}
 
-	public static void Save(ICollection<OVRSpatialAnchor> anchors, SaveOptions saveOptions, Action<ICollection<OVRSpatialAnchor>, OperationResult> onComplete = null)
+	public static OVRTask<OperationResult> SaveAsync(IEnumerable<OVRSpatialAnchor> anchors, SaveOptions saveOptions)
 	{
+		return default(OVRTask<OperationResult>);
 	}
 
 	private static List<OVRSpatialAnchor> CopyAnchorListIntoListFromPool(IEnumerable<OVRSpatialAnchor> anchorList)
@@ -249,17 +244,9 @@ public class OVRSpatialAnchor : MonoBehaviour
 		return null;
 	}
 
-	public void Share(OVRSpaceUser user, Action<OperationResult> onComplete = null)
-	{
-	}
-
 	public OVRTask<OperationResult> ShareAsync(OVRSpaceUser user)
 	{
 		return default(OVRTask<OperationResult>);
-	}
-
-	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, Action<OperationResult> onComplete = null)
-	{
 	}
 
 	public OVRTask<OperationResult> ShareAsync(OVRSpaceUser user1, OVRSpaceUser user2)
@@ -267,17 +254,9 @@ public class OVRSpatialAnchor : MonoBehaviour
 		return default(OVRTask<OperationResult>);
 	}
 
-	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3, Action<OperationResult> onComplete = null)
-	{
-	}
-
 	public OVRTask<OperationResult> ShareAsync(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3)
 	{
 		return default(OVRTask<OperationResult>);
-	}
-
-	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3, OVRSpaceUser user4, Action<OperationResult> onComplete = null)
-	{
 	}
 
 	public OVRTask<OperationResult> ShareAsync(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3, OVRSpaceUser user4)
@@ -285,17 +264,14 @@ public class OVRSpatialAnchor : MonoBehaviour
 		return default(OVRTask<OperationResult>);
 	}
 
-	public void Share(IEnumerable<OVRSpaceUser> users, Action<OperationResult> onComplete = null)
-	{
-	}
-
 	public OVRTask<OperationResult> ShareAsync(IEnumerable<OVRSpaceUser> users)
 	{
 		return default(OVRTask<OperationResult>);
 	}
 
-	public static void Share(ICollection<OVRSpatialAnchor> anchors, ICollection<OVRSpaceUser> users, Action<ICollection<OVRSpatialAnchor>, OperationResult> onComplete = null)
+	public static OVRTask<OperationResult> ShareAsync(IEnumerable<OVRSpatialAnchor> anchors, IEnumerable<OVRSpaceUser> users)
 	{
+		return default(OVRTask<OperationResult>);
 	}
 
 	private OVRTask<OperationResult> ShareAsyncInternal(List<OVRSpaceUser> users)
@@ -311,14 +287,6 @@ public class OVRSpatialAnchor : MonoBehaviour
 	private static bool AreSortedUserListsEqual(IReadOnlyList<OVRSpaceUser> sortedList1, IReadOnlyList<OVRSpaceUser> sortedList2)
 	{
 		return false;
-	}
-
-	public void Erase(Action<OVRSpatialAnchor, bool> onComplete = null)
-	{
-	}
-
-	public void Erase(EraseOptions eraseOptions, Action<OVRSpatialAnchor, bool> onComplete = null)
-	{
 	}
 
 	public OVRTask<bool> EraseAsync()
@@ -413,11 +381,6 @@ public class OVRSpatialAnchor : MonoBehaviour
 	{
 	}
 
-	public static bool LoadUnboundAnchors(LoadOptions options, Action<UnboundAnchor[]> onComplete)
-	{
-		return false;
-	}
-
 	public static OVRTask<UnboundAnchor[]> LoadUnboundAnchorsAsync(LoadOptions options)
 	{
 		return default(OVRTask<UnboundAnchor[]>);
@@ -433,8 +396,10 @@ public class OVRSpatialAnchor : MonoBehaviour
 	{
 	}
 
-	private static void PopulateUnbound(Guid uuid, ulong space)
+	private static bool TryGetUnbound(OVRAnchor anchor, out UnboundAnchor unboundAnchor)
 	{
+		unboundAnchor = default(UnboundAnchor);
+		return false;
 	}
 
 	private static void OnSpaceSetComponentStatusComplete(ulong requestId, bool result, OVRSpace space, Guid uuid, OVRPlugin.SpaceComponentType componentType, bool enabled)
@@ -446,6 +411,72 @@ public class OVRSpatialAnchor : MonoBehaviour
 	}
 
 	private static void OnShareSpacesComplete(ulong requestId, OperationResult result)
+	{
+	}
+
+	[Obsolete("You should use LoadUnboundAnchorsAsync to load previously saved anchors and AddComponent<OVRSpatialAnchor>() to create a new anchor. You should no longer need to use an OVRSpace handle directly.")]
+	public void InitializeFromExisting(OVRSpace space, Guid uuid)
+	{
+	}
+
+	[Obsolete("Use SaveAsync instead.")]
+	public void Save(Action<OVRSpatialAnchor, bool> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use SaveAsync instead.")]
+	public void Save(SaveOptions saveOptions, Action<OVRSpatialAnchor, bool> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public void Share(OVRSpaceUser user, Action<OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, Action<OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3, Action<OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public void Share(OVRSpaceUser user1, OVRSpaceUser user2, OVRSpaceUser user3, OVRSpaceUser user4, Action<OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public void Share(IEnumerable<OVRSpaceUser> users, Action<OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use EraseAsync instead.")]
+	public void Erase(Action<OVRSpatialAnchor, bool> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use EraseAsync instead.")]
+	public void Erase(EraseOptions eraseOptions, Action<OVRSpatialAnchor, bool> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use LoadUnboundAnchorsAsync instead.")]
+	public static bool LoadUnboundAnchors(LoadOptions options, Action<UnboundAnchor[]> onComplete)
+	{
+		return false;
+	}
+
+	[Obsolete("Use ShareAsync instead.")]
+	public static void Share(ICollection<OVRSpatialAnchor> anchors, ICollection<OVRSpaceUser> users, Action<ICollection<OVRSpatialAnchor>, OperationResult> onComplete = null)
+	{
+	}
+
+	[Obsolete("Use SaveAsync instead.")]
+	public static void Save(ICollection<OVRSpatialAnchor> anchors, SaveOptions saveOptions, Action<ICollection<OVRSpatialAnchor>, OperationResult> onComplete = null)
 	{
 	}
 }

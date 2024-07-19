@@ -3,20 +3,22 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/PowerSource")]
 	[AddComponentMenu("VoidLogic/Sources/VoidLogic Power")]
 	[Support(SupportFlags.Supported, null)]
+	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/PowerSource")]
 	public class PowerSource : MonoBehaviour, IVoidLogicSource, IVoidLogicNode
 	{
-		[SerializeField]
 		[Tooltip("Amount of power supplied by this source")]
+		[SerializeField]
 		private float _value;
 
 		private static readonly PortMetadata _portMetadata;
 
-		[field: ReadOnly(false)]
 		[field: SerializeField]
+		[field: ReadOnly(false)]
 		public VoidLogicSubgraph Subgraph { get; set; }
+
+		public int OutputCount => 0;
 
 		public float OutputValue
 		{

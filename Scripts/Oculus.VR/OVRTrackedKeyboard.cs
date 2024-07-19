@@ -74,8 +74,8 @@ public class OVRTrackedKeyboard : MonoBehaviour
 	[SerializeField]
 	private bool connectionRequired;
 
-	[SerializeField]
 	[Tooltip("If true, keyboard will be displayed even if it is not currently connected or visible.")]
+	[SerializeField]
 	private bool showUntracked;
 
 	[SerializeField]
@@ -90,8 +90,8 @@ public class OVRTrackedKeyboard : MonoBehaviour
 	[SerializeField]
 	public OVRTextureQualityFiltering textureFiltering;
 
-	[SerializeField]
 	[Tooltip("Changes the MipMap Bias of the currently used texture. Affects visualization quality only.")]
+	[SerializeField]
 	[Range(-1f, 1f)]
 	public float mipmapBias;
 

@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace SLZ.ModIO.WebSockets
 {
-	public sealed class ModIOWebSocketAPI : IDisposable
+	public sealed class ModIOWebSocketAPI : IDisposable, IAsyncDisposable
 	{
 		public delegate Task MessageReceivedHandler(Message message);
 		private readonly ILogger logger;

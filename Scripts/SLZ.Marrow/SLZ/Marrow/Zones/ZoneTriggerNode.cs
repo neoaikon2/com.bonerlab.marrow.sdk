@@ -1,3 +1,4 @@
+using System;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Interaction;
 using SLZ.Marrow.Utilities;
@@ -7,17 +8,25 @@ using UnityEngine;
 
 namespace SLZ.Marrow.Zones
 {
-	public class ZoneTriggerNode : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicSource
+	[Support(SupportFlags.Unsupported, "Not (yet?) supported.")]
+	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Zone Trigger")]
+	public class ZoneTriggerNode : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicSource
 	{
 		[SerializeField]
 		private Zone _zone;
 
 		public EntityAggregator aggregator;
 
+		[Tooltip("Previous node(s) in the chain")]
 		[SerializeField]
 		[Interface(typeof(IVoidLogicSource), false)]
+		[Obsolete("Replace with `_previousConnections`")]
+		private MonoBehaviour[] _previous;
+
+		[NonReorderable]
 		[Tooltip("Previous node(s) in the chain")]
-		protected MonoBehaviour[] _previous;
+		[SerializeField]
+		protected internal OutputPortReference[] _previousConnections;
 
 		public UltEvent<MarrowBody> OnBodyTriggerEnter;
 
@@ -41,9 +50,19 @@ namespace SLZ.Marrow.Zones
 
 		protected bool IsCachedInternal { get; private set; }
 
+		public int OutputCount => 0;
+
 		public int InputCount => 0;
 
 		public PortMetadata PortMetadata => default(PortMetadata);
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnBeforeSerialize()
+		{
+		}
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnAfterDeserialize()
+		{
+		}
 
 		private void Reset()
 		{
@@ -85,20 +104,30 @@ namespace SLZ.Marrow.Zones
 		{
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}
 
 		public void Calculate(ref NodeState nodeState)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
+		}
+
+		public void OnBeforeSerialize()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnAfterDeserialize()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

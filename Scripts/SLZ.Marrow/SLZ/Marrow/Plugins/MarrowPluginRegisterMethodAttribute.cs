@@ -3,8 +3,8 @@ using JetBrains.Annotations;
 
 namespace SLZ.Marrow.Plugins
 {
-	[AttributeUsage(AttributeTargets.Method)]
 	[MeansImplicitUse]
+	[AttributeUsage(AttributeTargets.Method)]
 	public class MarrowPluginRegisterMethodAttribute : Attribute
 	{
 	}

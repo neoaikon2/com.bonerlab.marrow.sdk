@@ -4,9 +4,9 @@ using UnityEngine.Scripting;
 
 namespace SLZ.Marrow.Plugins
 {
-	[AttributeUsage(AttributeTargets.Class)]
 	[RequireAttributeUsages]
 	[MeansImplicitUse]
+	[AttributeUsage(AttributeTargets.Class)]
 	public class MarrowPluginAttribute : Attribute
 	{
 		public string Namespace { get; private set; }

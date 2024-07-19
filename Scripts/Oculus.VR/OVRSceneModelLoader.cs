@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
-[RequireComponent(typeof(OVRSceneManager))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_model_loader")]
+[RequireComponent(typeof(OVRSceneManager))]
 public class OVRSceneModelLoader : MonoBehaviour
 {
 	private const float RetryingReminderDelay = 10f;
@@ -24,6 +25,14 @@ public class OVRSceneModelLoader : MonoBehaviour
 	}
 
 	protected virtual void OnStart()
+	{
+	}
+
+	protected static OVRTask<bool> RequestScenePermissionAsync()
+	{
+		return default(OVRTask<bool>);
+	}
+	protected virtual void OnLoadSceneModelFailedPermissionNotGranted()
 	{
 	}
 

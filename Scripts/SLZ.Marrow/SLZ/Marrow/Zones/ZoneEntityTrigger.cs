@@ -1,3 +1,4 @@
+using System;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Interaction;
 using SLZ.Marrow.Utilities;
@@ -7,17 +8,25 @@ using UnityEngine;
 
 namespace SLZ.Marrow.Zones
 {
-	public class ZoneEntityTrigger : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicSource
+	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Zone Entity Trigger")]
+	[Support(SupportFlags.Unsupported, "Not (yet?) supported.")]
+	public class ZoneEntityTrigger : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicSource
 	{
 		[SerializeField]
 		private Zone _zone;
 
 		public EntityAggregator aggregator;
 
+		[Interface(typeof(IVoidLogicSource), false)]
 		[Tooltip("Previous node(s) in the chain")]
 		[SerializeField]
-		[Interface(typeof(IVoidLogicSource), false)]
-		protected internal MonoBehaviour[] _previous;
+		[Obsolete("Replace with `_previousConnections`")]
+		private MonoBehaviour[] _previous;
+
+		[NonReorderable]
+		[SerializeField]
+		[Tooltip("Previous node(s) in the chain")]
+		protected internal OutputPortReference[] _previousConnections;
 
 		public UltEvent<MarrowEntity> OnEntityTriggerEnter;
 
@@ -31,15 +40,25 @@ namespace SLZ.Marrow.Zones
 
 		private static readonly PortMetadata _portMetadata;
 
-		[field: ReadOnly(false)]
 		[field: SerializeField]
+		[field: ReadOnly(false)]
 		public VoidLogicSubgraph Subgraph { get; set; }
 
 		protected bool IsCachedInternal { get; private set; }
 
+		public int OutputCount => 0;
+
 		public int InputCount => 0;
 
 		public PortMetadata PortMetadata => default(PortMetadata);
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnBeforeSerialize()
+		{
+		}
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnAfterDeserialize()
+		{
+		}
 
 		private void Reset()
 		{
@@ -73,20 +92,30 @@ namespace SLZ.Marrow.Zones
 		{
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}
 
 		public void Calculate(ref NodeState nodeState)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
+		}
+
+		public void OnBeforeSerialize()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnAfterDeserialize()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

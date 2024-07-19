@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace SLZ.Marrow.LateReferences
 {
-	[ExecuteAlways]
 	[RequireComponent(typeof(LinkLateReferenceSubscriptions))]
+	[ExecuteAlways]
 	public class SceneExportTable : ExportTable
 	{
 		private protected override void Awake()

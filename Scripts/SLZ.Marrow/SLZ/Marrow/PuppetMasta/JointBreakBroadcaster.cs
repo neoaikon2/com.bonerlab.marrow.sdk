@@ -4,12 +4,12 @@ namespace SLZ.Marrow.PuppetMasta
 {
 	public class JointBreakBroadcaster : MonoBehaviour
 	{
-		[SerializeField]
 		[HideInInspector]
+		[SerializeField]
 		public PuppetMaster puppetMaster;
 
-		[SerializeField]
 		[HideInInspector]
+		[SerializeField]
 		public int muscleIndex;
 
 		private void OnJointBreak()

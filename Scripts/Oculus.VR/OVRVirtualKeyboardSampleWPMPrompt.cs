@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[Obsolete]
 [ExecuteInEditMode]
+[Obsolete]
 public class OVRVirtualKeyboardSampleWPMPrompt : MonoBehaviour
 {
 	private void Awake()

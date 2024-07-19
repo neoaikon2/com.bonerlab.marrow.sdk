@@ -32,16 +32,6 @@ namespace SLZ.ModIO.ApiModels
 
 		private long SLZ_002EModIO_002EApiModels_002EIPaginationObject_003CSLZ_002EModIO_002EApiModels_002EModfileObject_003E_002EResultTotal => 0L;
 
-		IReadOnlyList<ModfileObject> IPaginationObject<ModfileObject>.Data => throw new NotImplementedException();
-
-		long IPaginationObject<ModfileObject>.ResultCount => throw new NotImplementedException();
-
-		long IPaginationObject<ModfileObject>.ResultOffset => throw new NotImplementedException();
-
-		long IPaginationObject<ModfileObject>.ResultLimit => throw new NotImplementedException();
-
-		long IPaginationObject<ModfileObject>.ResultTotal => throw new NotImplementedException();
-
 		[JsonConstructor]
 		public GetModfilesObject([JsonProperty("data")] List<ModfileObject> data, [JsonProperty("result_count")] long resultCount, [JsonProperty("result_offset")] long resultOffset, [JsonProperty("result_limit")] long resultLimit, [JsonProperty("result_total")] long resultTotal)
 		{

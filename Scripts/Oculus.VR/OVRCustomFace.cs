@@ -10,8 +10,8 @@ public class OVRCustomFace : OVRFace
 		Custom = 1
 	}
 
-	[SerializeField]
 	[Tooltip("The mapping between Face Expressions to the blendshapes available on the shared mesh of the skinned mesh renderer")]
+	[SerializeField]
 	internal OVRFaceExpressions.FaceExpression[] _mappings;
 
 	[SerializeField]

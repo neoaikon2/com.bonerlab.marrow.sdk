@@ -4,8 +4,8 @@ namespace SLZ.Marrow.AI
 {
 	public class SlotPosition : MonoBehaviour
 	{
-		[Header("This is meant to set global shader variable for holographic visor")]
 		[SerializeField]
+		[Header("This is meant to set global shader variable for holographic visor")]
 		private MeshRenderer VisorRenderer;
 
 		[SerializeField]

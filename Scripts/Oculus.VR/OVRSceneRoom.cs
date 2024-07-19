@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-[RequireComponent(typeof(OVRSceneAnchor))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_room")]
+[RequireComponent(typeof(OVRSceneAnchor))]
+[DisallowMultipleComponent]
 public class OVRSceneRoom : MonoBehaviour, IOVRSceneComponent
 {
 	internal List<OVRScenePlane> _walls;
@@ -16,6 +16,8 @@ public class OVRSceneRoom : MonoBehaviour, IOVRSceneComponent
 	private OVRSceneAnchor _sceneAnchor;
 
 	private OVRSceneManager _sceneManager;
+
+	private Guid _uuid;
 
 	internal HashSet<Guid> _uuidToQuery;
 

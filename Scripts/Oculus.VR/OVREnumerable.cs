@@ -120,3 +120,10 @@ internal readonly struct OVREnumerable<T> : IEnumerable<T>, IEnumerable
 		throw new NotImplementedException();
 	}
 }
+internal static class OVREnumerable
+{
+	public unsafe static int CopyTo<T>(this OVREnumerable<T> enumerable) where T : struct
+	{
+		return 0;
+	}
+}

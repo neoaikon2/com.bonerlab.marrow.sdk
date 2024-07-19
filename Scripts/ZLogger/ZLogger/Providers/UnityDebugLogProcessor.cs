@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ZLogger.Providers
 {
-	public class UnityDebugLogProcessor : IAsyncLogProcessor
+	public class UnityDebugLogProcessor : IAsyncLogProcessor //, IAsyncDisposable
 	{
 		private readonly ZLoggerOptions options;
 

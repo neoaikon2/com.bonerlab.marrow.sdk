@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/XorNode")]
-	[Support(SupportFlags.Supported, null)]
 	[AddComponentMenu("VoidLogic/Nodes/VoidLogic Xor")]
+	[Support(SupportFlags.Supported, null)]
+	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/XorNode")]
 	public class XorNode : BaseNode
 	{
 		private static readonly PortMetadata _portMetadata;

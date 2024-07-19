@@ -59,6 +59,7 @@ namespace RootMotion.FinalIK
 				return 0f;
 			}
 		}
+
 		[Tooltip("The master weight")]
 		public float weight;
 
@@ -74,6 +75,7 @@ namespace RootMotion.FinalIK
 		protected virtual void Start()
 		{
 		}
+
 		private IEnumerator Initiate()
 		{
 			return null;

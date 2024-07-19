@@ -34,8 +34,8 @@ namespace SLZ.Marrow.PuppetMasta
 
 		public bool visualizeTargetPose;
 
-		[Range(0f, 1f)]
 		[LargeHeader("Master Weights")]
+		[Range(0f, 1f)]
 		public float mappingWeight;
 
 		[Range(0f, 1f)]

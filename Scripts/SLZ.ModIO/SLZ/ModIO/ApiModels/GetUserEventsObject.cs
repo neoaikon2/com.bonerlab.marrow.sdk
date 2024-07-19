@@ -32,16 +32,6 @@ namespace SLZ.ModIO.ApiModels
 
 		private long SLZ_002EModIO_002EApiModels_002EIPaginationObject_003CSLZ_002EModIO_002EApiModels_002EUserEventObject_003E_002EResultTotal => 0L;
 
-		IReadOnlyList<UserEventObject> IPaginationObject<UserEventObject>.Data => throw new NotImplementedException();
-
-		long IPaginationObject<UserEventObject>.ResultCount => throw new NotImplementedException();
-
-		long IPaginationObject<UserEventObject>.ResultOffset => throw new NotImplementedException();
-
-		long IPaginationObject<UserEventObject>.ResultLimit => throw new NotImplementedException();
-
-		long IPaginationObject<UserEventObject>.ResultTotal => throw new NotImplementedException();
-
 		[JsonConstructor]
 		public GetUserEventsObject([JsonProperty("data")] List<UserEventObject> data, [JsonProperty("result_count")] long resultCount, [JsonProperty("result_offset")] long resultOffset, [JsonProperty("result_limit")] long resultLimit, [JsonProperty("result_total")] long resultTotal)
 		{

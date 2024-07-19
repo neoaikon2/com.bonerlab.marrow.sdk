@@ -103,6 +103,7 @@ namespace RootMotion.FinalIK
 		private void RootRotation()
 		{
 		}
+
 		private IEnumerator TurnToTarget()
 		{
 			return null;

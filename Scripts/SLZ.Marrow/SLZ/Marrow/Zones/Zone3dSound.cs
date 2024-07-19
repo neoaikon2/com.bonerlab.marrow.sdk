@@ -39,8 +39,8 @@ namespace SLZ.Marrow.Zones
 		[Tooltip("Higher number fades faster")]
 		public float fadeSpeed;
 
-		[Range(0.1f, 10f)]
 		[Tooltip("Radius of min sphere")]
+		[Range(0.1f, 10f)]
 		public float sourceRadius;
 
 		private bool loop;

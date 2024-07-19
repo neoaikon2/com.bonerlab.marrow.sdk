@@ -55,6 +55,10 @@ namespace Cysharp.Text
 		{
 		}
 
+		public void AppendFormat<T1, T2, T3>(string format, T1 arg1, T2 arg2, T3 arg3) where T1 : notnull where T2 : notnull where T3 : notnull
+		{
+		}
+
 		private static object CreateFormatter(Type type)
 		{
 			return null;
@@ -62,6 +66,11 @@ namespace Cysharp.Text
 
 		static Utf16ValueStringBuilder()
 		{
+		}
+
+		public ArraySegment<char> AsArraySegment()
+		{
+			return default(ArraySegment<char>);
 		}
 
 		[MethodImpl(256)]

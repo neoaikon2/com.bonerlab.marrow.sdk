@@ -70,8 +70,8 @@ namespace SLZ.Marrow.PuppetMasta
 		[SerializeField]
 		private Poolee _poolee;
 
-		[LargeHeader("Puppet Master")]
 		[Tooltip("Humanoid Config allows you to easily share PuppetMaster properties, including individual muscle props between Humanoid puppets.")]
+		[LargeHeader("Puppet Master")]
 		public PuppetMasterHumanoidConfig humanoidConfig;
 
 		public Transform targetRoot;
@@ -103,13 +103,13 @@ namespace SLZ.Marrow.PuppetMasta
 		[Tooltip("If true, will draw the target's pose as green lines in the Scene view. This runs in the Editor only. If you wish to profile PuppetMaster, switch this off.")]
 		public bool visualizeTargetPose;
 
-		[LargeHeader("Master Weights")]
-		[Range(0f, 1f)]
 		[Tooltip("The weight of mapping the animated character to the ragdoll pose.")]
+		[Range(0f, 1f)]
+		[LargeHeader("Master Weights")]
 		public float mappingWeight;
 
-		[Range(0f, 1f)]
 		[Tooltip("The normalized strength of the muscles.")]
+		[Range(0f, 1f)]
 		public float muscleWeight;
 
 		[LargeHeader("Joint and Muscle Settings")]
@@ -128,8 +128,8 @@ namespace SLZ.Marrow.PuppetMasta
 		[Tooltip("Should the muscles collide with each other? Consider leaving this off while the puppet is pinned for performance and better accuracy.  Since the joints are actuated, most PuppetMaster simulations will not actually require internal collisions at all.")]
 		public bool internalCollisions;
 
-		[LargeHeader("Individual Muscle Settings")]
 		[Tooltip("The Muscles managed by this PuppetMaster.")]
+		[LargeHeader("Individual Muscle Settings")]
 		public Muscle[] muscles;
 
 		public UpdateDelegate OnPostInitiate;

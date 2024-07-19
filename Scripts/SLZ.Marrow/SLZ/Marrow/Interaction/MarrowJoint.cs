@@ -42,6 +42,8 @@ namespace SLZ.Marrow.Interaction
 
 		private List<Action<MarrowJoint>> _jointBreakActions;
 
+		private List<Action<MarrowJoint>> _jointDestroyActions;
+
 		public MarrowBody BodyA => null;
 
 		public MarrowBody BodyB => null;
@@ -141,6 +143,14 @@ namespace SLZ.Marrow.Interaction
 		}
 
 		public void UnregisterOnBreakEvent(Action<MarrowJoint> jointBreakAction)
+		{
+		}
+
+		public void RegisterOnDestroyEvent(Action<MarrowJoint> jointDestroyAction)
+		{
+		}
+
+		public void UnregisterOnDestroyEvent(Action<MarrowJoint> jointDestroyAction)
 		{
 		}
 

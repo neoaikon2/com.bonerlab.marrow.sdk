@@ -14,6 +14,10 @@ namespace SLZ.Marrow.Warehouse
         {
         }
 
+        public DataCardReference(Barcode barcode) : base(barcode)
+        {
+        }
+
         public DataCardReference(string barcode) : base(barcode)
         {
         }
@@ -52,6 +56,10 @@ namespace SLZ.Marrow.Warehouse
         {
         }
 
+        public DataCardReference(Barcode barcode) : base(barcode)
+        {
+        }
+
         public DataCardReference(string barcode) : base(barcode)
         {
         }
@@ -85,6 +93,10 @@ namespace SLZ.Marrow.Warehouse
         {
         }
 
+        public BoneTagReference(Barcode barcode) : base(barcode)
+        {
+        }
+
         public BoneTagReference(string barcode) : base(barcode)
         {
         }
@@ -94,6 +106,10 @@ namespace SLZ.Marrow.Warehouse
     public class MonoDiscReference : DataCardReference<MonoDisc>
     {
         public MonoDiscReference() : base(Warehouse.Barcode.EmptyBarcode())
+        {
+        }
+
+        public MonoDiscReference(Barcode barcode) : base(barcode)
         {
         }
 

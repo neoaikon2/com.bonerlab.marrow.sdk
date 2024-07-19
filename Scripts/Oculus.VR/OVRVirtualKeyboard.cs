@@ -9,8 +9,8 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-[DisallowMultipleComponent]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_virtual_keyboard")]
+[DisallowMultipleComponent]
 public class OVRVirtualKeyboard : MonoBehaviour
 {
 	public enum KeyboardPosition
@@ -283,8 +283,8 @@ public class OVRVirtualKeyboard : MonoBehaviour
 
 	private ITextHandler _runtimeTextHandler;
 
-	[Header("Controller Input")]
 	[FormerlySerializedAs("leftControllerInputTransform")]
+	[Header("Controller Input")]
 	public Transform leftControllerRootTransform;
 
 	public Transform leftControllerDirectTransform;
@@ -501,6 +501,10 @@ public class OVRVirtualKeyboard : MonoBehaviour
 	{
 	}
 
+	private void UnloadModel()
+	{
+	}
+
 	private void DestroyKeyboard()
 	{
 	}
@@ -529,6 +533,11 @@ public class OVRVirtualKeyboard : MonoBehaviour
 
 	private void UpdateInputs()
 	{
+	}
+
+	private ulong GetKeyboardSpace()
+	{
+		return 0uL;
 	}
 
 	private void SyncKeyboardLocation()
@@ -577,6 +586,11 @@ public class OVRVirtualKeyboard : MonoBehaviour
 	}
 
 	private void UpdateVisibleState()
+	{
+	}
+
+	[ContextMenu("Autofill Input Roots")]
+	public void AutoPopulate()
 	{
 	}
 }

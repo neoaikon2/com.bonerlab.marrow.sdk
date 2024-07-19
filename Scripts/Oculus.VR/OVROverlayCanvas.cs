@@ -24,13 +24,13 @@ public class OVROverlayCanvas : OVRRayTransformer
 	private Shader _overrideCanvasShader;
 
 	[SerializeField]
-	[HideInInspector]
 	[FormerlySerializedAs("_transparentShader")]
+	[HideInInspector]
 	private Shader _transparentImposterShader;
 
-	[FormerlySerializedAs("_opaqueShader")]
-	[SerializeField]
 	[HideInInspector]
+	[SerializeField]
+	[FormerlySerializedAs("_opaqueShader")]
 	private Shader _opaqueImposterShader;
 
 	private RectTransform _rectTransform;

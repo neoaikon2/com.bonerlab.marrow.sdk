@@ -1,16 +1,16 @@
 using UnityEngine;
 
-[DisallowMultipleComponent]
-[RequireComponent(typeof(OVRSceneAnchor))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_volume")]
+[RequireComponent(typeof(OVRSceneAnchor))]
+[DisallowMultipleComponent]
 public class OVRSceneVolume : MonoBehaviour, IOVRSceneComponent
 {
-	[Tooltip("When enabled, scales the child transforms according to the dimensions of this volume. If both Volume and Plane components exist on the game object, the volume takes precedence.")]
 	[SerializeField]
+	[Tooltip("When enabled, scales the child transforms according to the dimensions of this volume. If both Volume and Plane components exist on the game object, the volume takes precedence.")]
 	internal bool _scaleChildren;
 
-	[Tooltip("When enabled, offsets the child transforms according to the offset of this volume. If both Volume and Plane components exist on the game object, the volume takes precedence.")]
 	[SerializeField]
+	[Tooltip("When enabled, offsets the child transforms according to the offset of this volume. If both Volume and Plane components exist on the game object, the volume takes precedence.")]
 	internal bool _offsetChildren;
 
 	private OVRSceneAnchor _sceneAnchor;

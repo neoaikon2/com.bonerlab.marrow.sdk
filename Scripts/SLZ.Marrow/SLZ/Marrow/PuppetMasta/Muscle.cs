@@ -27,16 +27,16 @@ namespace SLZ.Marrow.PuppetMasta
 			[Tooltip("Which body part does this muscle belong to?")]
 			public Group group;
 
-			[Range(0f, 1f)]
 			[Tooltip("The weight (multiplier) of mapping this muscle's target to the muscle.")]
+			[Range(0f, 1f)]
 			public float mappingWeight;
 
 			[Range(0f, 1f)]
 			[Tooltip("The muscle strength (multiplier).")]
 			public float muscleWeight;
 
-			[Range(0f, 1f)]
 			[Tooltip("Multiplier of the positionDamper of the ConfigurableJoints' Slerp Drive.")]
+			[Range(0f, 1f)]
 			public float muscleDamper;
 
 			[Tooltip("If true, will map the target to the world space position of the muscle. Normally this should be true for only the root muscle (the hips).")]

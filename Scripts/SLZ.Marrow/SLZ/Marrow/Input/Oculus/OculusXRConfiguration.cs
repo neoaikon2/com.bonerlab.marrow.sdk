@@ -36,8 +36,8 @@ namespace SLZ.Marrow.Input.Oculus
 		[Tooltip("Late latching is a feature that can reduce rendered head/controller latency by a substantial amount. Before enabling, be sure to go over the documentation to ensure that the feature is used correctly. This feature must also be enabled through the Oculus XR Plugin settings.")]
 		public bool lateLatching;
 
-		[Tooltip("The target display frequency to set")]
 		[Header("Display")]
+		[Tooltip("The target display frequency to set")]
 		public DisplayFrequencies targetDisplayFrequency;
 	}
 }

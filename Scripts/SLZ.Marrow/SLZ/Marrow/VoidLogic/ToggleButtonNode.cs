@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[AddComponentMenu(null)]
-	[Obsolete("Use Button + Toggle instead", true)]
-	[Support(SupportFlags.Unsupported, null)]
 	[Support(SupportFlags.Deprecated, "Use Button + Toggle instead")]
+	[Support(SupportFlags.Unsupported, null)]
+	[Obsolete("Use Button + Toggle instead", true)]
+	[AddComponentMenu(null)]
 	public class ToggleButtonNode : ButtonNode
 	{
 		private float _multiplier;

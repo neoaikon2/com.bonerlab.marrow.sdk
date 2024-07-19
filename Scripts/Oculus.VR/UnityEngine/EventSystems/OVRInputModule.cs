@@ -13,6 +13,21 @@ namespace UnityEngine.EventSystems
 			Buttons = 1
 		}
 
+		public interface InputSource
+		{
+			bool IsPressed();
+
+			bool IsReleased();
+
+			Transform GetPointerRayTransform();
+
+			bool IsValid();
+
+			bool IsActive();
+
+			void UpdatePointerRay(OVRInputRayData rayData);
+		}
+
 		[Tooltip("Object which points with Z axis. E.g. CentreEyeAnchor from OVRCameraRig")]
 		public Transform rayTransform;
 
@@ -24,8 +39,8 @@ namespace UnityEngine.EventSystems
 		[Tooltip("Keyboard button to act as gaze click")]
 		public KeyCode gazeClickKey;
 
-		[Header("Physics")]
 		[Tooltip("Perform an sphere cast to determine correct depth for gaze pointer")]
+		[Header("Physics")]
 		public bool performSphereCastForGazepointer;
 
 		[Header("Gamepad Stick Scroll")]
@@ -51,8 +66,8 @@ namespace UnityEngine.EventSystems
 		[NonSerialized]
 		public OVRRaycaster activeGraphicRaycaster;
 
-		[Header("Dragging")]
 		[Tooltip("Minimum pointer movement in degrees to start dragging")]
+		[Header("Dragging")]
 		public float angleDragThreshold;
 
 		[SerializeField]
@@ -86,6 +101,10 @@ namespace UnityEngine.EventSystems
 		protected Dictionary<int, OVRPointerEventData> m_VRRayPointerData;
 
 		private readonly MouseState m_MouseState;
+
+		private List<InputSource> _trackedInputSources;
+
+		private static List<InputSource> _pendingInputSources;
 
 		[Obsolete("Mode is no longer needed on input module as it handles both mouse and keyboard simultaneously.", false)]
 		public InputMode inputMode => default(InputMode);
@@ -156,7 +175,13 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
+		public static OVRInputModule instance { get; private set; }
+
 		protected OVRInputModule()
+		{
+		}
+
+		protected override void Awake()
 		{
 		}
 
@@ -247,7 +272,12 @@ namespace UnityEngine.EventSystems
 			return default(Vector3);
 		}
 
-		protected virtual MouseState GetGazePointerData()
+		protected virtual MouseState GetMouseStateFromInputSource(InputSource inputSource, int id)
+		{
+			return null;
+		}
+
+		protected virtual MouseState GetMouseStateFromRaycast(Transform rayOrigin)
 		{
 			return null;
 		}
@@ -284,6 +314,18 @@ namespace UnityEngine.EventSystems
 		protected Vector2 GetExtraScrollDelta()
 		{
 			return default(Vector2);
+		}
+
+		public static void TrackInputSource(InputSource hand)
+		{
+		}
+
+		public static void UntrackInputSource(InputSource hand)
+		{
+		}
+
+		protected override void OnDestroy()
+		{
 		}
 	}
 }

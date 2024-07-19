@@ -18,8 +18,8 @@ namespace SLZ.Marrow.VoidLogic
 		[field: SerializeField]
 		public float HighThreshold { get; internal set; }
 
-		[field: SerializeField]
 		[field: Tooltip("Level at which value is unambiguously \"low\"")]
+		[field: SerializeField]
 		public float LowThreshold { get; internal set; }
 
 		[field: SerializeField]

@@ -19,6 +19,11 @@ namespace Cysharp.Text
 			return default(Utf8ValueStringBuilder);
 		}
 
+		public static Utf16ValueStringBuilder CreateStringBuilder(bool notNested)
+		{
+			return default(Utf16ValueStringBuilder);
+		}
+
 		public static Utf8ValueStringBuilder CreateUtf8StringBuilder(bool notNested)
 		{
 			return default(Utf8ValueStringBuilder);

@@ -130,7 +130,6 @@ namespace SLZ.Marrow.Warehouse
                 if (generateBarcode)
                 {
                     dataCard.GenerateBarcode();
-                    dataCard.SlimCode.GenerateGuid();
                 }
             }
 
@@ -143,5 +142,4 @@ namespace SLZ.Marrow.Warehouse
             return (T)CreateDataCard(typeof(T), pallet, title, generateBarcode);
         }
     }
-
 }

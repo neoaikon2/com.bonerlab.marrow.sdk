@@ -24,6 +24,10 @@ public class OVRScenePrefabOverride : ISerializationCallbackReceiver
 	{
 	}
 
+	internal void UpdateEditorClassificationIndex()
+	{
+	}
+
 	public void OnBeforeSerialize()
 	{
 		throw new NotImplementedException();

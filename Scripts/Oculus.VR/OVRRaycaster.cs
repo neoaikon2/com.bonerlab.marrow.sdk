@@ -34,6 +34,8 @@ public class OVRRaycaster : GraphicRaycaster, IPointerEnterHandler, IEventSystem
 	[NonSerialized]
 	private static readonly List<RaycastHit> s_SortedGraphics;
 
+	private static readonly Vector3[] _corners;
+
 	private Canvas canvas => null;
 
 	private OVRRayTransformer rayTransformer => null;

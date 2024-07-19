@@ -8,28 +8,28 @@ namespace SLZ.Marrow.VoidLogic
 	{
 		private static readonly PortMetadata _portMetadata;
 
-		[field: Tooltip("Counter initial value")]
 		[field: SerializeField]
+		[field: Tooltip("Counter initial value")]
 		public int Value { get; set; }
 
-		[field: SerializeField]
 		[field: Tooltip("Minimum allowable value")]
+		[field: SerializeField]
 		public int Min { get; set; }
 
 		[field: Tooltip("Maximum allowable value")]
 		[field: SerializeField]
 		public int Max { get; set; }
 
-		[field: Tooltip("Edge detection configuration for decrement input")]
 		[field: SerializeField]
+		[field: Tooltip("Edge detection configuration for decrement input")]
 		private EdgeDetector DecrementEdgeDetector { get; set; }
 
-		[field: Tooltip("Edge detection configuration for increment input")]
 		[field: SerializeField]
+		[field: Tooltip("Edge detection configuration for increment input")]
 		private EdgeDetector IncrementEdgeDetector { get; set; }
 
-		[field: Tooltip("Edge detection configuration for reset input")]
 		[field: SerializeField]
+		[field: Tooltip("Edge detection configuration for reset input")]
 		private EdgeDetector ResetEdgeDetector { get; set; }
 
 		public override PortMetadata PortMetadata => default(PortMetadata);

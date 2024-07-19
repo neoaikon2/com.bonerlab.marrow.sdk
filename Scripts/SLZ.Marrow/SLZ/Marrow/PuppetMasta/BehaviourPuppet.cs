@@ -42,8 +42,8 @@ namespace SLZ.Marrow.PuppetMasta
 			[Range(0f, 1f)]
 			public float unpinParents;
 
-			[Tooltip("How much will collisions with muscles of this group unpin child muscles?")]
 			[Range(0f, 1f)]
+			[Tooltip("How much will collisions with muscles of this group unpin child muscles?")]
 			public float unpinChildren;
 
 			[Range(0f, 1f)]
@@ -125,15 +125,15 @@ namespace SLZ.Marrow.PuppetMasta
 		[Tooltip("An optimisation. Will only process up to this number of collisions per physics step.")]
 		public int maxCollisions;
 
-		[Range(0.001f, 10f)]
 		[Tooltip("How fast will the muscles of this group regain their pin weight?")]
+		[Range(0.001f, 10f)]
 		public float regainPinSpeed;
 
 		[Tooltip("'Boosting' is a term used for making muscles temporarily immune to collisions and/or deal more damage to the muscles of other characters. That is done by increasing Muscle.State.immunity and Muscle.State.impulseMlp. For example when you set muscle.state.immunity to 1, boostFalloff will determine how fast this value will fall back to normal (0). Use BehaviourPuppet.BoostImmunity() and BehaviourPuppet.BoostImpulseMlp() for boosting from your own scripts. It is helpful for making the puppet stronger and deliever more punch while playing a melee hitting/kicking animation.")]
 		public float boostFalloff;
 
-		[LargeHeader("Muscle Group Properties")]
 		[Tooltip("The default muscle properties. If there are no 'Group Overrides', this will be used for all muscles.")]
+		[LargeHeader("Muscle Group Properties")]
 		public MuscleProps defaults;
 
 		[Tooltip("Overriding default muscle properties for some muscle groups (for example making the feet stiffer or the hands looser).")]
@@ -144,15 +144,15 @@ namespace SLZ.Marrow.PuppetMasta
 		[Range(0.001f, 10f)]
 		public float knockOutDistance;
 
-		[Range(0f, 1f)]
 		[Tooltip("Smaller value makes the muscles weaker when the puppet is knocked out.")]
+		[Range(0f, 1f)]
 		public float unpinnedMuscleWeightMlp;
 
 		[Tooltip("Most character controllers apply supernatural accelerations to characters when changing running direction or jumping. It will require major pinning forces to be applied on the ragdoll to keep up with that acceleration. When a puppet collides with something at that point and is unpinned, those forces might shoot the puppet off to space. This variable limits the velocity of the ragdoll's Rigidbodies when the puppet is unpinned.")]
 		public float maxRigidbodyVelocity;
 
-		[Range(0f, 1f)]
 		[Tooltip("If a muscle has drifted farther than 'Knock Out Distance', will only unpin the puppet if it's pin weight is less than this value. Lowering this value will make puppets less likely to lose balance on minor collisions.")]
+		[Range(0f, 1f)]
 		public float pinWeightThreshold;
 
 		[Tooltip("If false, will not unbalance the puppet by muscles that have their pin weight set to 0 in PuppetMaster muscle settings.")]

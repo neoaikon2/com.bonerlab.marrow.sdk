@@ -128,17 +128,17 @@ public class OVRBody : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRS
 		return false;
 	}
 
-	public OVRSkeletonRenderer.SkeletonRendererData GetSkeletonRendererData()
-	{
-		throw new NotImplementedException();
-	}
-
 	public OVRSkeleton.SkeletonType GetSkeletonType()
 	{
 		throw new NotImplementedException();
 	}
 
 	public OVRSkeleton.SkeletonPoseData GetSkeletonPoseData()
+	{
+		throw new NotImplementedException();
+	}
+
+	public OVRSkeletonRenderer.SkeletonRendererData GetSkeletonRendererData()
 	{
 		throw new NotImplementedException();
 	}

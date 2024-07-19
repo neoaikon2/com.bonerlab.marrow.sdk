@@ -1,14 +1,55 @@
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using SLZ.Data;
+using SLZ.Marrow.Data;
+using SLZ.Marrow.Pool;
+using SLZ.Marrow.Utilities;
+using Unity.Collections;
+using Unity.Mathematics;
+using Unity.Profiling;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace SLZ.VFX
 {
-	public class DecalProjector : MonoBehaviour
+	public class DecalProjector : SpawnEvents
 	{
+		private struct decalBitField96
+		{
+			private BitField64 internal64;
+
+			private BitField32 internal32;
+
+			public void SetBits(int index, bool value)
+			{
+			}
+
+			public bool IsSet(int index)
+			{
+				return false;
+			}
+		}
+
 		public enum DecalProjectionMethod
 		{
 			GridRaycastProjection = 0,
 			RadialRaycastProjection = 1
+		}
+
+		[StructLayout(2)]
+		public struct DecalVertex
+		{
+			public float3 vertex;
+
+			public uint normal;
+
+			public uint tangent;
+
+			public half4 color;
+
+			public half2 uv;
 		}
 
 		private struct DebugRayInfo
@@ -18,19 +59,21 @@ namespace SLZ.VFX
 			public Vector3 HitPoint;
 		}
 
-		[Header("General Settings")]
-		public Material decalMaterial;
+		private static ComponentCache<DecalProjector> _cache;
 
-		[Tooltip("Offset from surface normal (m)")]
-		public float offset;
-
-		[Tooltip("Vertex Color")]
 		[ColorUsage(true, true)]
+		[Tooltip("Vertex Color")]
 		public Color vertexColor;
 
 		[Tooltip("Collider that will be raycast to")]
 		[Header("Raycast Settings")]
 		public Collider targetCollider;
+
+		[Header("General Settings")]
+		public Material decalMaterial;
+
+		[Tooltip("Offset from surface normal (m)")]
+		public float offset;
 
 		[Tooltip("Diameter or width (m)")]
 		public float decalSize;
@@ -41,12 +84,12 @@ namespace SLZ.VFX
 		[Header("Mesh mode Settings")]
 		public DecalProjectionMethod projectionMethod;
 
-		[Range(1f, 8f)]
 		[Header("Grid Settings")]
-		public int decalResolution;
+		[Range(1f, 8f)]
+		public int gridResolution;
 
-		[Range(3f, 16f)]
 		[Header("Radial Settings")]
+		[Range(3f, 16f)]
 		public int radialSegments;
 
 		[Range(1f, 5f)]
@@ -59,32 +102,70 @@ namespace SLZ.VFX
 
 		public bool randomizeSelection;
 
-		[SerializeField]
 		[Header("Generated Decal")]
-		private MeshFilter meshFilter;
+		[SerializeField]
+		internal MeshFilter meshFilter;
 
 		[SerializeField]
-		private MeshRenderer meshRenderer;
+		internal MeshRenderer meshRenderer;
 
-		private readonly List<Vector3> _vertices;
+		[SerializeField]
+		private Mesh mesh;
 
-		private readonly List<Vector2> _uvs;
+		internal bool isEnqueued;
 
-		private readonly List<Color> _colorsz;
+		internal int poolIndex;
 
-		private readonly List<int> _triangles;
+		public const int maxDecalVerts = 80;
 
-		private readonly List<bool> _hits;
+		private const MeshUpdateFlags noValidationFlag = MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontResetBoneBounds | MeshUpdateFlags.DontNotifyMeshUsers | MeshUpdateFlags.DontRecalculateBounds;
 
-		private readonly List<Vector3> _positionGrid;
+		private static readonly ProfilerMarker s_CreateRadialLayout;
 
-		private readonly List<bool> _hitGrid;
+		private static readonly ProfilerMarker s_CreateGridLayout;
 
-		private Dictionary<int, Mesh> _meshes;
+		private static readonly ProfilerMarker s_CreateVerts;
 
-		private List<DebugRayInfo> debugRayInfos;
+		private static readonly ProfilerMarker s_CreateTris;
 
-		private void Reset()
+		private static readonly ProfilerMarker s_ApplyMeshData;
+
+		private NativeArray<DecalVertex> tempMeshBuffer;
+
+		private NativeArray<ushort> tempIdxBuffer;
+
+		private static readonly VertexAttributeDescriptor[] decalVtxLayout;
+
+		private readonly List<DebugRayInfo> _debugRayInfos;
+
+		public static ComponentCache<DecalProjector> Cache => null;
+
+		protected override void Awake()
+		{
+		}
+
+		public override void OnPoolDeInitialize()
+		{
+		}
+
+		private void OnDisable()
+		{
+		}
+
+		private void OnDestroy()
+		{
+		}
+
+		private Mesh CreateDecalMesh()
+		{
+			return null;
+		}
+
+		public void SetColliderColorAndCreate(Collider hitCollider, Color color)
+		{
+		}
+
+		public void SetVariablesAndCreate(SurfaceData.MaterialLevel decalMaterialLevel, Collider hitCollider, Color colorTint)
 		{
 		}
 
@@ -93,42 +174,40 @@ namespace SLZ.VFX
 		{
 		}
 
-		public static Vector2 LerpVector2Components(Vector2 a, Vector2 b, Vector2 t)
+		private void ApplyDecalImmediate(NativeArray<DecalVertex> vertexBuffer, NativeArray<ushort> indexBuffer)
+		{
+		}
+
+		private static Vector2 LerpVector2Components(Vector2 a, Vector2 b, Vector2 t)
 		{
 			return default(Vector2);
 		}
 
-		public static Vector2 LerpVector2Components(Vector2 a, Vector2 b, float t1, float t2)
+		[MethodImpl(256)]
+		private static uint ConvertFloat4ToSNorm4(float4 value)
 		{
-			return default(Vector2);
+			return 0u;
 		}
 
-		private void CreateConformedMesh(float size)
+		[MethodImpl(256)]
+		private static uint ConvertFloat3ToSNorm4(float3 value)
 		{
+			return 0u;
 		}
 
-		private void ApplyToMesh()
-		{
-		}
-
-		private void CreateRadialLayout(float size)
-		{
-		}
-
-		public void FindCollider()
+		private void CreateConformedMesh(float size, NativeArray<DecalVertex> vertexBuffer, NativeArray<ushort> indexBuffer)
 		{
 		}
 
-		public void RandomizeSelection()
+		private void CreateRadialLayout(float size, NativeArray<DecalVertex> vertexBuffer, NativeArray<ushort> indexBuffer)
 		{
 		}
 
-		private DebugRayInfo DefineRayInfo(Vector3 point1, Vector3 point2)
+		private void AddGeoFrom4Hits(NativeArray<ushort> indexBuffer, ref int indexPtr, Span<ushort> ccwIndices, Span<bool> ccwHits)
 		{
-			return default(DebugRayInfo);
 		}
 
-		private void OnDrawGizmosSelected()
+		private void RandomizeSelection()
 		{
 		}
 	}

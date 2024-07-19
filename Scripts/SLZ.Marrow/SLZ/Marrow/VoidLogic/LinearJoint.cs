@@ -1,18 +1,24 @@
+using System;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Utilities;
 using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[Support(SupportFlags.BetaSupported, "This works, but uses ConfigurableJoint instead of Marrow primitives.")]
 	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/LinearJoint")]
 	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Linear Joint (Sliding)")]
-	public sealed class LinearJoint : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicActuator
+	[Support(SupportFlags.BetaSupported, "This works, but uses ConfigurableJoint instead of Marrow primitives.")]
+	public sealed class LinearJoint : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicActuator
 	{
 		[SerializeField]
+		[Obsolete("Replace with `_previousConnection`")]
 		[Tooltip("Previous node in the chain")]
 		[Interface(typeof(IVoidLogicSource), false)]
 		private MonoBehaviour _previousNode;
+
+		[Tooltip("Previous node in the chain")]
+		[SerializeField]
+		private OutputPortReference _previousConnection;
 
 		private float? _priorValue;
 
@@ -24,8 +30,8 @@ namespace SLZ.Marrow.VoidLogic
 
 		private Rigidbody _rigidBody;
 
-		[Header("Joint Control")]
 		[SerializeField]
+		[Header("Joint Control")]
 		private bool _varyTargetPosition;
 
 		[SerializeField]
@@ -80,6 +86,14 @@ namespace SLZ.Marrow.VoidLogic
 
 		public PortMetadata PortMetadata => default(PortMetadata);
 
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnBeforeSerialize()
+		{
+		}
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnAfterDeserialize()
+		{
+		}
+
 		private void Awake()
 		{
 		}
@@ -112,20 +126,30 @@ namespace SLZ.Marrow.VoidLogic
 		{
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}
 
 		public void Actuate(ref NodeState nodeState)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
+		}
+
+		public void OnBeforeSerialize()
+		{
+			//throw new NotImplementedException();
+		}
+
+		public void OnAfterDeserialize()
+		{
+			//throw new NotImplementedException();
 		}
 	}
 }

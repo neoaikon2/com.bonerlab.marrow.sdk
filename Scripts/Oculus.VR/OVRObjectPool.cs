@@ -4,6 +4,13 @@ using System.Runtime.CompilerServices;
 
 internal static class OVRObjectPool
 {
+	public interface IPoolObject
+	{
+		void OnGet();
+
+		void OnReturn();
+	}
+
 	private static class Storage<T> where T : class, new()
 	{
 		public static readonly HashSet<T> HashSet;

@@ -11,6 +11,9 @@ namespace SLZ.Marrow.Input
 		[SerializeField]
 		private LayerMask _raycastMask;
 
+		[SerializeField]
+		private LineRenderer _lineRenderer;
+
 		private bool _isClicked;
 
 		private XRUIInputModule _inputModule;
@@ -30,6 +33,10 @@ namespace SLZ.Marrow.Input
 		}
 
 		public virtual void UpdateUIModel(ref TrackedDeviceModel model)
+		{
+		}
+
+		private void LateUpdate()
 		{
 		}
 

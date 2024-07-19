@@ -13,8 +13,8 @@ namespace SLZ.Marrow
 		[field: HideInInspector]
 		public string HashAlgorithm { get; private set; }
 
-		[field: ReadOnly(false)]
 		[field: SerializeField]
+		[field: ReadOnly(false)]
 		public string UniqueId { get; private set; }
 
 		[field: SerializeField]

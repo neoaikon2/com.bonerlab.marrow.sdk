@@ -255,8 +255,8 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[HideInInspector]
 	private ColorSpace _colorGamut;
 
-	[Tooltip("Enable Dynamic Resolution. This will allocate render buffers to maxDynamicResolutionScale size and will change the viewport to adapt performance.")]
 	[SerializeField]
+	[Tooltip("Enable Dynamic Resolution. This will allocate render buffers to maxDynamicResolutionScale size and will change the viewport to adapt performance.")]
 	public bool enableDynamicResolution;
 
 	[Range(0.7f, 1.3f)]
@@ -264,23 +264,23 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[SerializeField]
 	public float minDynamicResolutionScale;
 
+	[Range(0.7f, 1.3f)]
 	[Tooltip("Maximum scaling factor used when dynamic resolution is enabled.")]
 	[SerializeField]
-	[Range(0.7f, 1.3f)]
 	public float maxDynamicResolutionScale;
 
 	private const int _pixelStepPerFrame = 32;
 
-	[HideInInspector]
 	[Range(0.5f, 2f)]
 	[Tooltip("Min RenderScale the app can reach under adaptive resolution mode")]
+	[HideInInspector]
 	[Obsolete("Deprecated. Use minDynamicRenderScale instead.", false)]
 	public float minRenderScale;
 
-	[Obsolete("Deprecated. Use maxDynamicRenderScale instead.", false)]
 	[Range(0.5f, 2f)]
-	[HideInInspector]
 	[Tooltip("Max RenderScale the app can reach under adaptive resolution mode")]
+	[HideInInspector]
+	[Obsolete("Deprecated. Use maxDynamicRenderScale instead.", false)]
 	public float maxRenderScale;
 
 	[SerializeField]
@@ -296,27 +296,27 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[HideInInspector]
 	public bool expandMixedRealityCapturePropertySheet;
 
-	[Tooltip("If true, Mixed Reality mode will be enabled. It would be always set to false when the game is launching without editor")]
 	[HideInInspector]
+	[Tooltip("If true, Mixed Reality mode will be enabled. It would be always set to false when the game is launching without editor")]
 	public bool enableMixedReality;
 
 	[HideInInspector]
 	public CompositionMethod compositionMethod;
 
-	[Tooltip("Extra hidden layers")]
 	[HideInInspector]
+	[Tooltip("Extra hidden layers")]
 	public LayerMask extraHiddenLayers;
 
-	[Tooltip("Extra visible layers")]
 	[HideInInspector]
+	[Tooltip("Extra visible layers")]
 	public LayerMask extraVisibleLayers;
 
 	[HideInInspector]
 	[Tooltip("Dynamic Culling Mask")]
 	public bool dynamicCullingMask;
 
-	[Tooltip("Backdrop color for Rift (External Compositon)")]
 	[HideInInspector]
+	[Tooltip("Backdrop color for Rift (External Compositon)")]
 	public Color externalCompositionBackdropColorRift;
 
 	[HideInInspector]
@@ -324,12 +324,12 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	public Color externalCompositionBackdropColorQuest;
 
 	[HideInInspector]
-	[Tooltip("The camera device for direct composition")]
 	[Obsolete("Deprecated", false)]
+	[Tooltip("The camera device for direct composition")]
 	public CameraDevice capturingCameraDevice;
 
-	[Obsolete("Deprecated", false)]
 	[HideInInspector]
+	[Obsolete("Deprecated", false)]
 	[Tooltip("Flip the camera frame horizontally")]
 	public bool flipCameraFrameHorizontally;
 
@@ -338,29 +338,29 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[Obsolete("Deprecated", false)]
 	public bool flipCameraFrameVertically;
 
-	[HideInInspector]
 	[Tooltip("Delay the touch controller pose by a short duration (0 to 0.5 second) to match the physical camera latency")]
+	[HideInInspector]
 	[Obsolete("Deprecated", false)]
 	public float handPoseStateLatency;
 
 	[HideInInspector]
-	[Tooltip("Delay the foreground / background image in the sandwich composition to match the physical camera latency. The maximum duration is sandwichCompositionBufferedFrames / {Game FPS}")]
 	[Obsolete("Deprecated", false)]
+	[Tooltip("Delay the foreground / background image in the sandwich composition to match the physical camera latency. The maximum duration is sandwichCompositionBufferedFrames / {Game FPS}")]
 	public float sandwichCompositionRenderLatency;
 
-	[HideInInspector]
 	[Tooltip("The number of frames are buffered in the SandWich composition. The more buffered frames, the more memory it would consume.")]
+	[HideInInspector]
 	[Obsolete("Deprecated", false)]
 	public int sandwichCompositionBufferedFrames;
 
-	[HideInInspector]
-	[Obsolete("Deprecated", false)]
 	[Tooltip("Chroma Key Color")]
+	[Obsolete("Deprecated", false)]
+	[HideInInspector]
 	public Color chromaKeyColor;
 
 	[HideInInspector]
-	[Tooltip("Chroma Key Similarity")]
 	[Obsolete("Deprecated", false)]
+	[Tooltip("Chroma Key Similarity")]
 	public float chromaKeySimilarity;
 
 	[Obsolete("Deprecated", false)]
@@ -368,19 +368,19 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[Tooltip("Chroma Key Smooth Range")]
 	public float chromaKeySmoothRange;
 
-	[Obsolete("Deprecated", false)]
 	[HideInInspector]
+	[Obsolete("Deprecated", false)]
 	[Tooltip("Chroma Key Spill Range")]
 	public float chromaKeySpillRange;
 
 	[Obsolete("Deprecated", false)]
-	[Tooltip("Use dynamic lighting (Depth sensor required)")]
 	[HideInInspector]
+	[Tooltip("Use dynamic lighting (Depth sensor required)")]
 	public bool useDynamicLighting;
 
-	[HideInInspector]
-	[Tooltip("The quality level of depth image. The lighting could be more smooth and accurate with high quality depth, but it would also be more costly in performance.")]
 	[Obsolete("Deprecated", false)]
+	[Tooltip("The quality level of depth image. The lighting could be more smooth and accurate with high quality depth, but it would also be more costly in performance.")]
+	[HideInInspector]
 	public DepthQuality depthQuality;
 
 	[Obsolete("Deprecated", false)]
@@ -394,39 +394,39 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	public float dynamicLightingDepthVariationClampingValue;
 
 	[Obsolete("Deprecated", false)]
-	[HideInInspector]
 	[Tooltip("Type of virutal green screen ")]
+	[HideInInspector]
 	public VirtualGreenScreenType virtualGreenScreenType;
 
-	[HideInInspector]
-	[Tooltip("Top Y of virtual green screen")]
 	[Obsolete("Deprecated", false)]
+	[Tooltip("Top Y of virtual green screen")]
+	[HideInInspector]
 	public float virtualGreenScreenTopY;
 
 	[Obsolete("Deprecated", false)]
-	[HideInInspector]
 	[Tooltip("Bottom Y of virtual green screen")]
+	[HideInInspector]
 	public float virtualGreenScreenBottomY;
 
+	[Obsolete("Deprecated", false)]
 	[Tooltip("When using a depth camera (e.g. ZED), whether to use the depth in virtual green screen culling.")]
 	[HideInInspector]
-	[Obsolete("Deprecated", false)]
 	public bool virtualGreenScreenApplyDepthCulling;
 
+	[Obsolete("Deprecated", false)]
 	[HideInInspector]
 	[Tooltip("The tolerance value (in meter) when using the virtual green screen with a depth camera. Make it bigger if the foreground objects got culled incorrectly.")]
-	[Obsolete("Deprecated", false)]
 	public float virtualGreenScreenDepthTolerance;
 
-	[HideInInspector]
 	[Tooltip("(Quest-only) control if the mixed reality capture mode can be activated automatically through remote network connection.")]
+	[HideInInspector]
 	public MrcActivationMode mrcActivationMode;
 
 	public InstantiateMrcCameraDelegate instantiateMixedRealityCameraGameObject;
 
 	[HideInInspector]
-	[Tooltip("Specify if Concurrent Hands and Controllers should be enabled. ")]
-	public bool launchMultimodalHandsControllersOnStartup;
+	[Tooltip("Specify if simultaneous hands and controllers should be enabled. ")]
+	public bool launchSimultaneousHandsControllersOnStartup;
 
 	[HideInInspector]
 	[Tooltip("Specify if Insight Passthrough should be enabled. Passthrough layers can only be used if passthrough is enabled.")]
@@ -440,8 +440,8 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 	[HideInInspector]
 	internal bool requestFaceTrackingPermissionOnStartup;
 
-	[HideInInspector]
 	[SerializeField]
+	[HideInInspector]
 	internal bool requestEyeTrackingPermissionOnStartup;
 
 	[SerializeField]
@@ -472,8 +472,8 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 
 	protected static DepthTextureMode m_CachedDepthTextureMode;
 
-	[SerializeField]
 	[Tooltip("Available only for devices that support local dimming. It improves visual quality with a better display contrast ratio, but at a minor GPU performance cost.")]
+	[SerializeField]
 	private bool _localDimming;
 
 	[Header("Tracking")]
@@ -506,6 +506,16 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 
 	[Tooltip("Defines if hand poses can be populated by controller data.")]
 	public ControllerDrivenHandPosesType controllerDrivenHandPosesType;
+
+	[Tooltip("Allows the application to use simultaneous hands and controllers functionality. This option must be enabled at build time.")]
+	public bool SimultaneousHandsAndControllersEnabled;
+
+	[HideInInspector]
+	[SerializeField]
+	private bool _readOnlyWideMotionModeHandPosesEnabled;
+
+	[Tooltip("Defines if hand poses can leverage algorithms to retrieve hand poses outside of the normal tracking area.")]
+	public bool wideMotionModeHandPosesEnabled;
 
 	private static bool _isUserPresentCached;
 
@@ -1494,6 +1504,10 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 		remove
 		{
 		}
+	}
+
+	protected virtual void OnValidate()
+	{
 	}
 
 	[Obsolete("Deprecated. Use Dynamic Render Scaling instead.", false)]

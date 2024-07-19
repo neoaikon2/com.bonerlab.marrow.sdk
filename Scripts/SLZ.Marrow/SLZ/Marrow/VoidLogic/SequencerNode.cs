@@ -3,9 +3,9 @@ using UnityEngine.Serialization;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/SequencerNode")]
 	[AddComponentMenu("VoidLogic/Nodes/VoidLogic Sequencer")]
 	[Support(SupportFlags.AlphaSupported, "This needs to be updated to use sensors and actuators.")]
+	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/SequencerNode")]
 	public class SequencerNode : BaseNode
 	{
 		private bool _isRunning;
@@ -18,31 +18,31 @@ namespace SLZ.Marrow.VoidLogic
 
 		private static readonly PortMetadata _portMetadata;
 
-		[field: Tooltip("Timing sequence")]
-		[field: SerializeField]
 		[field: FormerlySerializedAs("_sequence")]
+		[field: SerializeField]
+		[field: Tooltip("Timing sequence")]
 		private AnimationCurve Sequence { get; set; }
 
 		[field: Tooltip("Exempt from slow-mo (advance in realtime instead of abiding by timescale)")]
-		[field: FormerlySerializedAs("_realtime")]
 		[field: SerializeField]
+		[field: FormerlySerializedAs("_realtime")]
 		public bool RealTime { get; private set; }
 
 		[field: SerializeField]
 		[field: Tooltip("Duration of a default animation curve at default speed (timed from t=0 to 1, speed input = 1).")]
 		public float TimeScale { get; private set; }
 
+		[field: SerializeField]
 		[field: Tooltip("Repeat the sequence, keeping it running until reset")]
 		[field: FormerlySerializedAs("_loop")]
-		[field: SerializeField]
 		public bool Loop { get; private set; }
 
-		[field: SerializeField]
 		[field: Tooltip("Resets the timing to the beginning after it completes")]
+		[field: SerializeField]
 		public bool ResetTimeOnSequenceCompletion { get; private set; }
 
-		[field: SerializeField]
 		[field: Tooltip("Edge detection configuration for start input")]
+		[field: SerializeField]
 		private EdgeDetector StartEdgeDetector { get; set; }
 
 		[field: Tooltip("Edge detection configuration for reset input")]

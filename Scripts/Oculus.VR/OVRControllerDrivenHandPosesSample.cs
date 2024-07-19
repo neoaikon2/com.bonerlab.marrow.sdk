@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_controller_driven_hand_poses_sample")]
 [DisallowMultipleComponent]
+[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_controller_driven_hand_poses_sample")]
 public class OVRControllerDrivenHandPosesSample : MonoBehaviour
 {
 	[SerializeField]
@@ -14,39 +14,9 @@ public class OVRControllerDrivenHandPosesSample : MonoBehaviour
 	[SerializeField]
 	private Button buttonNatural;
 
-	[SerializeField]
-	private LineRenderer leftLinePointer;
-
-	[SerializeField]
-	private LineRenderer rightLinePointer;
-
 	public OVRCameraRig cameraRig;
 
 	private void Awake()
-	{
-	}
-
-	private void OnDestroy()
-	{
-	}
-
-	private void OnEnable()
-	{
-	}
-
-	private void OnDisable()
-	{
-	}
-
-	private void Update()
-	{
-	}
-
-	private void UpdateLineRenderer()
-	{
-	}
-
-	private void UpdateLineRendererForHand(bool isLeft)
 	{
 	}
 

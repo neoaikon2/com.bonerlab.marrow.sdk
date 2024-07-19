@@ -1,3 +1,4 @@
+using System;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Utilities;
 using UnityEngine;
@@ -7,12 +8,18 @@ namespace SLZ.Marrow.VoidLogic
 	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/ToneGenerator")]
 	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Tone Generator")]
 	[Support(SupportFlags.AlphaSupported, "This is intended mainly for debugging, and as such its serialization compatibility is not guaranteed.")]
-	public class ToneGenerator : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicActuator
+	public class ToneGenerator : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicActuator
 	{
+		[Obsolete("Replace with `_previousConnections`")]
+		[Tooltip("Previous node(s) in the chain")]
 		[SerializeField]
 		[Interface(typeof(IVoidLogicSource), false)]
+		private MonoBehaviour[] _previous;
+
 		[Tooltip("Previous node(s) in the chain")]
-		protected internal MonoBehaviour[] _previous;
+		[NonReorderable]
+		[SerializeField]
+		protected internal OutputPortReference[] _previousConnections;
 
 		[Range(0f, 1f)]
 		[SerializeField]
@@ -50,6 +57,14 @@ namespace SLZ.Marrow.VoidLogic
 
 		public PortMetadata PortMetadata => default(PortMetadata);
 
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnBeforeSerialize()
+		{
+		}
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnAfterDeserialize()
+		{
+		}
+
 		private void Awake()
 		{
 		}
@@ -78,20 +93,30 @@ namespace SLZ.Marrow.VoidLogic
 		{
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}
 
 		public void Actuate(ref NodeState nodeState)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
+		}
+
+		public void OnBeforeSerialize()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnAfterDeserialize()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

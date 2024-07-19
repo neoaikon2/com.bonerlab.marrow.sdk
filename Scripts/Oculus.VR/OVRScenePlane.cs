@@ -3,9 +3,9 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-[RequireComponent(typeof(OVRSceneAnchor))]
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_plane")]
 [DisallowMultipleComponent]
+[RequireComponent(typeof(OVRSceneAnchor))]
 public class OVRScenePlane : MonoBehaviour, IOVRSceneComponent
 {
 	private struct GetBoundaryLengthJob : IJob

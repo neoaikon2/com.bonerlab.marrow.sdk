@@ -112,17 +112,17 @@ namespace SLZ.Marrow.PuppetMasta
 
 		public float usage_leg_rt;
 
-		[Tooltip("Current state of agro, will move up and down based on damage received / dealt")]
 		[Header("Disposition")]
 		[Range(0f, 1f)]
+		[Tooltip("Current state of agro, will move up and down based on damage received / dealt")]
 		public float aggression;
 
 		[Tooltip("Nonfunctioning")]
 		[Range(0f, 10f)]
 		public float irritability;
 
-		[Tooltip("Multiplier, Decreases aggression based on damage dealt")]
 		[Range(0f, 10f)]
+		[Tooltip("Multiplier, Decreases aggression based on damage dealt")]
 		public float placability;
 
 		[Tooltip("Multiplier, Increases aggression based on damage received")]

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_semantic_classification")]
-[RequireComponent(typeof(OVRSceneAnchor))]
 [DisallowMultipleComponent]
+[RequireComponent(typeof(OVRSceneAnchor))]
 public class OVRSemanticClassification : MonoBehaviour, IOVRSceneComponent
 {
 	public const char LabelSeparator = ',';

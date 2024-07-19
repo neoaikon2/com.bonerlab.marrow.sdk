@@ -1,8 +1,9 @@
-using System;
 using UnityEngine;
 
-public class OVRRuntimeSettings : ScriptableObject
+public class OVRRuntimeSettings : OVRRuntimeAssetsBase
 {
+	private const string _assetName = "OculusRuntimeSettings";
+
 	private static OVRRuntimeSettings _instance;
 
 	public OVRManager.ColorSpace colorSpace;
@@ -24,8 +25,6 @@ public class OVRRuntimeSettings : ScriptableObject
 
 	[SerializeField]
 	private string telemetryProjectGuid;
-
-	internal Action<bool> OnTelemetrySet;
 
 	[SerializeField]
 	private OVRPlugin.BodyTrackingFidelity2 bodyTrackingFidelity;

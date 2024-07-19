@@ -24,6 +24,7 @@ namespace RootMotion.FinalIK
 		protected virtual void Start()
 		{
 		}
+
 		private IEnumerator Initiate()
 		{
 			return null;

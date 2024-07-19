@@ -67,8 +67,6 @@ public static class OVRHaptics
 
 		private bool m_lowLatencyMode;
 
-		private bool m_paddingEnabled;
-
 		private int m_prevSamplesQueued;
 
 		private float m_prevSamplesQueuedTime;
@@ -84,8 +82,6 @@ public static class OVRHaptics
 		private uint m_controller;
 
 		private OVRNativeBuffer m_nativeBuffer;
-
-		private OVRHapticsClip m_paddingClip;
 
 		private int PrevSampleRateHz;
 

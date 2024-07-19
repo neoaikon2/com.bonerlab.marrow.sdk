@@ -368,8 +368,8 @@ public class OVRUnityHumanoidSkeletonRetargeter : OVRSkeleton
 	[SerializeField]
 	protected OVRHumanBodyBonesMappings.BodySection[] _bodySectionToPosition;
 
-	[SerializeField]
 	[Tooltip("Controls if we run retargeting from FixedUpdate, Update, or both.")]
+	[SerializeField]
 	protected UpdateType _updateType;
 
 	protected OVRSkeletonMetadata SourceSkeletonData => null;

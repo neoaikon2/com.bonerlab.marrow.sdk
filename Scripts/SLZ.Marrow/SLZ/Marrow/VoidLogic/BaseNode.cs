@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Utilities;
@@ -5,20 +6,36 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	public abstract class BaseNode : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicSource
+	public abstract class BaseNode : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicSource
 	{
-		[Tooltip("Previous node(s) in the chain")]
 		[SerializeField]
+		[Tooltip("Previous node(s) in the chain")]
 		[Interface(typeof(IVoidLogicSource), false)]
-		protected internal MonoBehaviour[] _previous;
+		[Obsolete("Replace with `_previousConnections`")]
+		private MonoBehaviour[] _previous;
 
-		[field: SerializeField]
+		[NonReorderable]
+		[SerializeField]
+		[Tooltip("Previous node(s) in the chain")]
+		protected internal OutputPortReference[] _previousConnections;
+
 		[field: ReadOnly(false)]
+		[field: SerializeField]
 		public VoidLogicSubgraph Subgraph { get; set; }
 
 		public abstract PortMetadata PortMetadata { get; }
 
 		public int InputCount => 0;
+
+		public virtual int OutputCount => 0;
+
+		public void OnBeforeSerialize()
+		{
+		}
+
+		public void OnAfterDeserialize()
+		{
+		}
 
 		protected virtual void Awake()
 		{
@@ -42,13 +59,13 @@ namespace SLZ.Marrow.VoidLogic
 			return false;
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}

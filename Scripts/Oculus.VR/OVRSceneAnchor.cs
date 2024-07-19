@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_anchor")]
 [DisallowMultipleComponent]
+[HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_scene_anchor")]
 public sealed class OVRSceneAnchor : MonoBehaviour
 {
 	private static readonly Quaternion RotateY180;
@@ -55,6 +55,10 @@ public sealed class OVRSceneAnchor : MonoBehaviour
 	}
 
 	public static void GetSceneAnchors(List<OVRSceneAnchor> anchors)
+	{
+	}
+
+	public static void GetSceneAnchorsOfType<T>(List<T> anchors) where T : UnityEngine.Object
 	{
 	}
 

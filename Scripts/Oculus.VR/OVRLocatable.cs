@@ -65,6 +65,11 @@ public readonly struct OVRLocatable : IOVRAnchorComponent<OVRLocatable>, IEquata
 		return default(OVRTask<bool>);
 	}
 
+	public OVRTask<bool> SetEnabledSafeAsync(bool enabled, double timeout = 0.0)
+	{
+		return default(OVRTask<bool>);
+	}
+
 	public bool Equals(OVRLocatable other)
 	{
 		return false;

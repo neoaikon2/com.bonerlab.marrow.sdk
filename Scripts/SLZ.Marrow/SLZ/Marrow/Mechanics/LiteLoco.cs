@@ -237,8 +237,8 @@ namespace SLZ.Marrow.Mechanics
 			}
 		}
 
-		[Range(0f, 1f)]
 		[Tooltip("Used for blending in/out of procedural locomotion.")]
+		[Range(0f, 1f)]
 		public float weight;
 
 		public Transform root;

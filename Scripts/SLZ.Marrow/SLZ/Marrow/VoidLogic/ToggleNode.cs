@@ -10,8 +10,8 @@ namespace SLZ.Marrow.VoidLogic
 
 		public bool Value { get; set; }
 
-		[field: Tooltip("Edge detection configuration for set input")]
 		[field: SerializeField]
+		[field: Tooltip("Edge detection configuration for set input")]
 		private EdgeDetector SetEdgeDetector { get; set; }
 
 		[field: Tooltip("Edge detection configuration for reset input")]

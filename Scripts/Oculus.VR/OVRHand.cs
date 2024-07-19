@@ -1,7 +1,8 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class OVRHand : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRSkeletonRenderer.IOVRSkeletonRendererDataProvider, OVRMesh.IOVRMeshDataProvider, OVRMeshRenderer.IOVRMeshRendererDataProvider
+public class OVRHand : MonoBehaviour, OVRInputModule.InputSource, OVRSkeleton.IOVRSkeletonDataProvider, OVRSkeletonRenderer.IOVRSkeletonRendererDataProvider, OVRMesh.IOVRMeshDataProvider, OVRMeshRenderer.IOVRMeshRendererDataProvider
 {
 	public enum Hand
 	{
@@ -34,9 +35,15 @@ public class OVRHand : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRS
 
 	public OVRInput.InputDeviceShowState m_showState;
 
+	public OVRRayHelper RayHelper;
+
 	private GameObject _pointerPoseGO;
 
 	private OVRPlugin.HandState _handState;
+
+	private bool _wasIndexPinching;
+
+	private bool _wasReleased;
 
 	public bool IsDataValid { get; private set; }
 
@@ -112,7 +119,44 @@ public class OVRHand : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRS
 		return default(OVRMeshRenderer.MeshRendererData);
 	}
 
+	public void OnEnable()
+	{
+	}
+
+	public void OnDisable()
+	{
+	}
+
 	public void OnValidate()
+	{
+	}
+
+	public bool IsPressed()
+	{
+		return false;
+	}
+
+	public bool IsReleased()
+	{
+		return false;
+	}
+
+	public Transform GetPointerRayTransform()
+	{
+		return null;
+	}
+
+	public bool IsValid()
+	{
+		return false;
+	}
+
+	public bool IsActive()
+	{
+		return false;
+	}
+
+	public void UpdatePointerRay(OVRInputRayData rayData)
 	{
 	}
 
@@ -122,17 +166,7 @@ public class OVRHand : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRS
 		return false;
 	}
 
-	public OVRSkeleton.SkeletonType GetSkeletonType()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public OVRSkeleton.SkeletonPoseData GetSkeletonPoseData()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public OVRSkeletonRenderer.SkeletonRendererData GetSkeletonRendererData()
+	public OVRMeshRenderer.MeshRendererData GetMeshRendererData()
 	{
 		throw new System.NotImplementedException();
 	}
@@ -142,7 +176,17 @@ public class OVRHand : MonoBehaviour, OVRSkeleton.IOVRSkeletonDataProvider, OVRS
 		throw new System.NotImplementedException();
 	}
 
-	public OVRMeshRenderer.MeshRendererData GetMeshRendererData()
+	public OVRSkeletonRenderer.SkeletonRendererData GetSkeletonRendererData()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public OVRSkeleton.SkeletonType GetSkeletonType()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public OVRSkeleton.SkeletonPoseData GetSkeletonPoseData()
 	{
 		throw new System.NotImplementedException();
 	}

@@ -125,8 +125,8 @@ namespace SLZ.Marrow.PuppetMasta
 		[Header("Investigate State")]
 		public float investigateRange;
 
-		[EnumFlags]
 		[Header("Agro State General")]
+		[EnumFlags]
 		public TriggerRefProxy.NpcType agroOnNpcType;
 
 		public float breakAgroTargetDistance;

@@ -34,6 +34,11 @@ public readonly struct OVRSharable : IOVRAnchorComponent<OVRSharable>, IEquatabl
 		return default(OVRTask<bool>);
 	}
 
+	public OVRTask<bool> SetEnabledSafeAsync(bool enabled, double timeout = 0.0)
+	{
+		return default(OVRTask<bool>);
+	}
+
 	public bool Equals(OVRSharable other)
 	{
 		return false;

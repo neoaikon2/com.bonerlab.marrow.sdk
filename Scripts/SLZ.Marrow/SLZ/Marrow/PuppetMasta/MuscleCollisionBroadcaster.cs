@@ -14,8 +14,8 @@ namespace SLZ.Marrow.PuppetMasta
 		[SerializeField]
 		public PuppetMaster puppetMaster;
 
-		[SerializeField]
 		[HideInInspector]
+		[SerializeField]
 		public int muscleIndex;
 
 		private const string onMuscleHit = "OnMuscleHit";

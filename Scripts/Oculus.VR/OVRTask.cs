@@ -1,9 +1,182 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Threading.Tasks.Sources;
 
-internal static class OVRTask
+public static class OVRTask
 {
+	private class MultiTaskData<T> : OVRObjectPool.IPoolObject
+	{
+		protected OVRTask<T> CombinedTask;
+
+		protected T Result;
+
+		protected HashSet<Guid> Remaining;
+
+		private void OVRObjectPool_002EIPoolObject_002EOnGet()
+		{
+		}
+
+		private void OVRObjectPool_002EIPoolObject_002EOnReturn()
+		{
+		}
+
+		protected void AddTask(Guid id)
+		{
+		}
+
+		protected void OnResult(Guid taskId)
+		{
+		}
+
+		public void OnGet()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnReturn()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	private class MultiTaskData<T1, T2> : MultiTaskData<(T1, T2)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2>)> _onResult2;
+
+		public static OVRTask<(T1, T2)> Get(OVRTask<T1> task1, OVRTask<T2> task2)
+		{
+			return default(OVRTask<(T1, T2)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3> : MultiTaskData<(T1, T2, T3)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3>)> _onResult3;
+
+		public static OVRTask<(T1, T2, T3)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3)
+		{
+			return default(OVRTask<(T1, T2, T3)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3, T4> : MultiTaskData<(T1, T2, T3, T4)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3, T4>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3, T4>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3, T4>)> _onResult3;
+
+		private static Action<T4, (Guid, MultiTaskData<T1, T2, T3, T4>)> _onResult4;
+
+		public static OVRTask<(T1, T2, T3, T4)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4)
+		{
+			return default(OVRTask<(T1, T2, T3, T4)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3, T4, T5> : MultiTaskData<(T1, T2, T3, T4, T5)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3, T4, T5>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3, T4, T5>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3, T4, T5>)> _onResult3;
+
+		private static Action<T4, (Guid, MultiTaskData<T1, T2, T3, T4, T5>)> _onResult4;
+
+		private static Action<T5, (Guid, MultiTaskData<T1, T2, T3, T4, T5>)> _onResult5;
+
+		public static OVRTask<(T1, T2, T3, T4, T5)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5)
+		{
+			return default(OVRTask<(T1, T2, T3, T4, T5)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3, T4, T5, T6> : MultiTaskData<(T1, T2, T3, T4, T5, T6)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult3;
+
+		private static Action<T4, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult4;
+
+		private static Action<T5, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult5;
+
+		private static Action<T6, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6>)> _onResult6;
+
+		public static OVRTask<(T1, T2, T3, T4, T5, T6)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6)
+		{
+			return default(OVRTask<(T1, T2, T3, T4, T5, T6)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3, T4, T5, T6, T7> : MultiTaskData<(T1, T2, T3, T4, T5, T6, T7)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult3;
+
+		private static Action<T4, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult4;
+
+		private static Action<T5, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult5;
+
+		private static Action<T6, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult6;
+
+		private static Action<T7, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7>)> _onResult7;
+
+		public static OVRTask<(T1, T2, T3, T4, T5, T6, T7)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6, OVRTask<T7> task7)
+		{
+			return default(OVRTask<(T1, T2, T3, T4, T5, T6, T7)>);
+		}
+	}
+
+	private class MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8> : MultiTaskData<(T1, T2, T3, T4, T5, T6, T7, T8)>
+	{
+		private static Action<T1, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult1;
+
+		private static Action<T2, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult2;
+
+		private static Action<T3, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult3;
+
+		private static Action<T4, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult4;
+
+		private static Action<T5, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult5;
+
+		private static Action<T6, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult6;
+
+		private static Action<T7, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult7;
+
+		private static Action<T8, (Guid, MultiTaskData<T1, T2, T3, T4, T5, T6, T7, T8>)> _onResult8;
+
+		public static OVRTask<(T1, T2, T3, T4, T5, T6, T7, T8)> Get(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6, OVRTask<T7> task7, OVRTask<T8> task8)
+		{
+			return default(OVRTask<(T1, T2, T3, T4, T5, T6, T7, T8)>);
+		}
+	}
+
+	public static OVRTask<TResult[]> WhenAll<TResult>(IEnumerable<OVRTask<TResult>> tasks)
+	{
+		return default(OVRTask<TResult[]>);
+	}
+
+	public static OVRTask<List<TResult>> WhenAll<TResult>(IEnumerable<OVRTask<TResult>> tasks, List<TResult> results)
+	{
+		return default(OVRTask<List<TResult>>);
+	}
+
 	internal static OVRTask<TResult> FromGuid<TResult>(Guid id)
 	{
 		return default(OVRTask<TResult>);
@@ -14,7 +187,7 @@ internal static class OVRTask
 		return default(OVRTask<TResult>);
 	}
 
-	internal static OVRTask<TResult> FromResult<TResult>(TResult result)
+	public static OVRTask<TResult> FromResult<TResult>(TResult result)
 	{
 		return default(OVRTask<TResult>);
 	}
@@ -29,7 +202,7 @@ internal static class OVRTask
 		return default(OVRTask<TResult>);
 	}
 
-	internal static void SetResult<TResult>(Guid id, TResult result)
+	public static void SetResult<TResult>(Guid id, TResult result)
 	{
 	}
 
@@ -42,7 +215,7 @@ internal static class OVRTask
 		return default(OVRTask<TResult>);
 	}
 
-	private static OVRTask<TResult> Create<TResult>(Guid id)
+	public static OVRTask<TResult> Create<TResult>(Guid taskId)
 	{
 		return default(OVRTask<TResult>);
 	}
@@ -51,12 +224,52 @@ internal static class OVRTask
 	{
 		return default(Guid);
 	}
+
+	internal static void RegisterType<TResult>()
+	{
+	}
+
+	public static OVRTask<(T1, T2)> WhenAll<T1, T2>(OVRTask<T1> task1, OVRTask<T2> task2)
+	{
+		return default(OVRTask<(T1, T2)>);
+	}
+
+	public static OVRTask<(T1, T2, T3)> WhenAll<T1, T2, T3>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3)
+	{
+		return default(OVRTask<(T1, T2, T3)>);
+	}
+
+	public static OVRTask<(T1, T2, T3, T4)> WhenAll<T1, T2, T3, T4>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4)
+	{
+		return default(OVRTask<(T1, T2, T3, T4)>);
+	}
+
+	public static OVRTask<(T1, T2, T3, T4, T5)> WhenAll<T1, T2, T3, T4, T5>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5)
+	{
+		return default(OVRTask<(T1, T2, T3, T4, T5)>);
+	}
+
+	public static OVRTask<(T1, T2, T3, T4, T5, T6)> WhenAll<T1, T2, T3, T4, T5, T6>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6)
+	{
+		return default(OVRTask<(T1, T2, T3, T4, T5, T6)>);
+	}
+
+	public static OVRTask<(T1, T2, T3, T4, T5, T6, T7)> WhenAll<T1, T2, T3, T4, T5, T6, T7>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6, OVRTask<T7> task7)
+	{
+		return default(OVRTask<(T1, T2, T3, T4, T5, T6, T7)>);
+	}
+
+	public static OVRTask<(T1, T2, T3, T4, T5, T6, T7, T8)> WhenAll<T1, T2, T3, T4, T5, T6, T7, T8>(OVRTask<T1> task1, OVRTask<T2> task2, OVRTask<T3> task3, OVRTask<T4> task4, OVRTask<T5> task5, OVRTask<T6> task6, OVRTask<T7> task7, OVRTask<T8> task8)
+	{
+		return default(OVRTask<(T1, T2, T3, T4, T5, T6, T7, T8)>);
+	}
 }
+[AsyncMethodBuilder(typeof(OVRTaskBuilder<>))]
 public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposable
 {
-	private delegate void CallbackInvoker(Guid guid, TResult result);
+	private delegate void ContinueWithInvoker(Guid guid, TResult result);
 
-	private delegate bool CallbackRemover(Guid guid);
+	private delegate bool ContinueWithRemover(Guid guid);
 
 	private delegate bool InternalDataRemover(Guid guid);
 
@@ -113,6 +326,128 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 		}
 	}
 
+	private readonly struct CombinedTaskData : IDisposable
+	{
+		public readonly OVRTask<List<TResult>> Task;
+
+		private readonly HashSet<Guid> _remainingTaskIds;
+
+		private readonly List<Guid> _originalTaskOrder;
+
+		private readonly Dictionary<Guid, TResult> _completedTasks;
+
+		private readonly List<TResult> _userOwnedResultList;
+
+		private static readonly Action<TResult, CombinedTaskDataWithCompletedTaskId> _onSingleTaskCompleted;
+
+		private void OnSingleTaskCompleted(Guid taskId, TResult result)
+		{
+		}
+
+		public CombinedTaskData(IEnumerable<OVRTask<TResult>> tasks, List<TResult> userOwnedResultList)
+		{
+			Task = default(OVRTask<List<TResult>>);
+			_remainingTaskIds = null;
+			_originalTaskOrder = null;
+			_completedTasks = null;
+			_userOwnedResultList = null;
+		}
+
+		public void Dispose()
+		{
+		}
+	}
+
+	private struct CombinedTaskDataWithCompletedTaskId
+	{
+		public Guid CompletedTaskId;
+
+		public CombinedTaskData CombinedData;
+	}
+
+	private class TaskSource : IValueTaskSource<TResult>, OVRObjectPool.IPoolObject
+	{
+		//private ManualResetValueTaskSourceCore<TResult> _manualSource;
+
+		public ValueTask<TResult> Task { get; private set; }
+
+		public TResult GetResult(short token)
+		{
+			return default(TResult);
+		}
+
+		public ValueTaskSourceStatus GetStatus(short token)
+		{
+			return default(ValueTaskSourceStatus);
+		}
+
+		public void OnCompleted(Action<object> continuation, object state, short token, ValueTaskSourceOnCompletedFlags flags)
+		{
+		}
+
+		private void OVRObjectPool_002EIPoolObject_002EOnGet()
+		{
+		}
+
+		private void OVRObjectPool_002EIPoolObject_002EOnReturn()
+		{
+		}
+
+		public void SetResult(TResult result)
+		{
+		}
+
+		public void SetException(Exception exception)
+		{
+		}
+
+		public void OnGet()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnReturn()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	private class Awaitable<T>
+	{
+	}
+
+	private class AwaitableCompletionSource<T>
+	{
+		public Awaitable<T> Awaitable => null;
+
+		public void SetResult(in T result)
+		{
+		}
+
+		public void Reset()
+		{
+		}
+
+		public void SetException(Exception exception)
+		{
+		}
+	}
+
+	private class AwaitableSource : AwaitableCompletionSource<TResult>, OVRObjectPool.IPoolObject
+	{
+		public void OnGet()
+		{
+		}
+
+		public void OnReturn()
+		{
+		}
+
+		public void SetResultAndReturnToPool(in TResult result)
+		{
+		}
+	}
+
 	public readonly struct Awaiter : INotifyCompletion
 	{
 		private readonly OVRTask<TResult> _task;
@@ -124,13 +459,18 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 			_task = default(OVRTask<TResult>);
 		}
 
-		public void OnCompleted(Action continuation)
+		private void System_002ERuntime_002ECompilerServices_002EINotifyCompletion_002EOnCompleted(Action continuation)
 		{
 		}
 
 		public TResult GetResult()
 		{
 			return default(TResult);
+		}
+
+		public void OnCompleted(Action continuation)
+		{
+			throw new NotImplementedException();
 		}
 	}
 
@@ -140,9 +480,9 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 
 		private readonly Action<TResult> _delegate;
 
-		public static readonly CallbackInvoker Invoker;
+		public static readonly ContinueWithInvoker Invoker;
 
-		public static readonly CallbackRemover Remover;
+		public static readonly ContinueWithRemover Remover;
 
 		public static readonly Action Clearer;
 
@@ -181,9 +521,9 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 
 		private readonly Action<TResult, T> _delegate;
 
-		private static readonly CallbackInvoker Invoker;
+		private static readonly ContinueWithInvoker Invoker;
 
-		private static readonly CallbackRemover Remover;
+		private static readonly ContinueWithRemover Remover;
 
 		private static readonly Action Clearer;
 
@@ -219,27 +559,45 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 
 	private static readonly Dictionary<Guid, TResult> Results;
 
+	private static readonly Dictionary<Guid, Exception> Exceptions;
+
+	private static readonly Dictionary<Guid, TaskSource> Sources;
+
+	private static readonly Dictionary<Guid, AwaitableSource> AwaitableSources;
+
 	private static readonly Dictionary<Guid, Action> Continuations;
 
-	private static readonly Dictionary<Guid, CallbackInvoker> CallbackInvokers;
+	private static readonly Dictionary<Guid, ContinueWithInvoker> ContinueWithInvokers;
 
-	private static readonly Dictionary<Guid, CallbackRemover> CallbackRemovers;
+	private static readonly Dictionary<Guid, ContinueWithRemover> ContinueWithRemovers;
 
-	private static readonly HashSet<Action> CallbackClearers;
+	private static readonly HashSet<Action> ContinueWithClearers;
 
 	private static readonly Dictionary<Guid, InternalDataRemover> InternalDataRemovers;
 
 	private static readonly HashSet<Action> InternalDataClearers;
 
-	private static readonly Dictionary<Guid, Action<Guid>> SubscriberRemovers;
+	private static readonly Dictionary<Guid, Action<Guid>> IncrementalResultSubscriberRemovers;
 
-	private static readonly HashSet<Action> SubscriberClearers;
+	private static readonly HashSet<Action> IncrementalResultSubscriberClearers;
 
-	private readonly Guid _id;
+	internal readonly Guid _id;
+
+	private static readonly Action<List<TResult>, OVRTask<TResult[]>> _onCombinedTaskCompleted;
 
 	internal bool IsPending => false;
 
 	public bool IsCompleted => false;
+
+	public bool IsFaulted => false;
+
+	public bool HasResult => false;
+
+	private static bool TryExtractValue<TKey, TValue>(Dictionary<TKey, TValue> dict, TKey key, out TValue value)
+	{
+		value = default(TValue);
+		return false;
+	}
 
 	internal static void Clear()
 	{
@@ -250,8 +608,13 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 		_id = default(Guid);
 	}
 
-	internal void AddToPending()
+	static OVRTask()
 	{
+	}
+
+	internal bool AddToPending()
+	{
+		return false;
 	}
 
 	internal void SetInternalData<T>(T data)
@@ -261,6 +624,20 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 	internal bool TryGetInternalData<T>(out T data)
 	{
 		data = default(T);
+		return false;
+	}
+
+	internal void SetException(Exception exception)
+	{
+	}
+
+	private bool TryRemoveInternalData()
+	{
+		return false;
+	}
+
+	private bool TryInvokeContinuation()
+	{
 		return false;
 	}
 
@@ -276,9 +653,35 @@ public readonly struct OVRTask<TResult> : IEquatable<OVRTask<TResult>>, IDisposa
 	{
 	}
 
+	internal static OVRTask<List<TResult>> WhenAll(IEnumerable<OVRTask<TResult>> tasks, List<TResult> results)
+	{
+		return default(OVRTask<List<TResult>>);
+	}
+
+	internal static OVRTask<TResult[]> WhenAll(IEnumerable<OVRTask<TResult>> tasks)
+	{
+		return default(OVRTask<TResult[]>);
+	}
+
+	public Exception GetException()
+	{
+		return null;
+	}
+
 	public TResult GetResult()
 	{
 		return default(TResult);
+	}
+
+	public bool TryGetResult(out TResult result)
+	{
+		result = default(TResult);
+		return false;
+	}
+
+	public ValueTask<TResult> ToValueTask()
+	{
+		return default(ValueTask<TResult>);
 	}
 
 	public Awaiter GetAwaiter()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/DivideNode")]
 	[AddComponentMenu("VoidLogic/Nodes/VoidLogic Divide")]
+	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/DivideNode")]
 	[Support(SupportFlags.Supported, null)]
 	public class DivideNode : BaseNode
 	{

@@ -56,10 +56,10 @@ namespace SLZ.Marrow.Pool
 			return default(UniTask);
 		}
 
-		public static void Spawn(Spawnable spawnable, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, bool ignorePolicy = false, int? groupID = null, Action<GameObject> spawnCallback = null, Action<GameObject> despawnCallback = null)
+		public static void Spawn(Spawnable spawnable, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, Transform parent = null, bool ignorePolicy = false, int? groupID = null, Action<GameObject> spawnCallback = null, Action<GameObject> despawnCallback = null)
 		{
 		}
-		public static UniTask<Poolee> SpawnAsync(Spawnable spawnable, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, bool ignorePolicy = false, int? groupID = null, Action<GameObject> spawnCallback = null, Action<GameObject> despawnCallback = null)
+		public static UniTask<Poolee> SpawnAsync(Spawnable spawnable, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3? scale = null, Transform parent = null, bool ignorePolicy = false, int? groupID = null, Action<GameObject> spawnCallback = null, Action<GameObject> despawnCallback = null)
 		{
 			return default(UniTask<Poolee>);
 		}
@@ -68,7 +68,7 @@ namespace SLZ.Marrow.Pool
 		{
 		}
 
-		public static void Despawn(Poolee poolee, bool skipDisable = false)
+		public static void Despawn(Poolee poolee)
 		{
 		}
 	}

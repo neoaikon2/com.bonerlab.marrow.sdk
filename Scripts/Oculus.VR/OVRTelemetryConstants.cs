@@ -66,6 +66,8 @@ internal static class OVRTelemetryConstants
 			public const int InstallBlockData = 163065449;
 
 			public const int OpenSceneWithBlock = 163063649;
+
+			public const int DownloadContent = 163067281;
 		}
 
 		public static class AnnotationType
@@ -81,6 +83,29 @@ internal static class OVRTelemetryConstants
 			public const string ActionTrigger = "action_trigger";
 
 			public const string Error = "error";
+
+			public const string SceneSizeInB = "SceneSizeInB";
+		}
+	}
+
+	public static class Scene
+	{
+		public static class MarkerId
+		{
+			public const int UseOVRSceneManager = 163061745;
+
+			public const int UseDefaultSceneModelLoader = 163059869;
+		}
+
+		public static class AnnotationType
+		{
+			public const string UsingBasicPrefabs = "basic_prefabs";
+
+			public const string UsingPrefabOverrides = "prefab_overrides";
+
+			public const string ActiveRoomsOnly = "active_rooms_only";
+
+			public const string ReturnToRooms = "return_to_rooms";
 		}
 	}
 }

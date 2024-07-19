@@ -4,9 +4,45 @@ using UnityEngine;
 
 public readonly struct OVRAnchor : IEquatable<OVRAnchor>, IDisposable
 {
+	private struct DeferredValue
+	{
+		public OVRTask<bool> Task;
+
+		public bool EnabledDesired;
+
+		public ulong RequestId;
+	}
+
+	private struct DeferredKey : IEquatable<DeferredKey>
+	{
+		public ulong Space;
+
+		public OVRPlugin.SpaceComponentType ComponentType;
+
+		public static DeferredKey FromEvent(OVRDeserialize.SpaceSetComponentStatusCompleteData eventData)
+		{
+			return default(DeferredKey);
+		}
+
+		public bool Equals(DeferredKey other)
+		{
+			return false;
+		}
+
+		public override bool Equals(object obj)
+		{
+			return false;
+		}
+
+		public override int GetHashCode()
+		{
+			return 0;
+		}
+	}
+
 	public static readonly OVRAnchor Null;
 
-	private static readonly OVRPlugin.SpaceComponentType[] SupportedComponentsArray;
+	private static readonly Dictionary<DeferredKey, List<DeferredValue>> _deferredTasks;
 
 	internal ulong Handle { get; }
 
@@ -114,6 +150,20 @@ public readonly struct OVRAnchor : IEquatable<OVRAnchor>, IDisposable
 	}
 
 	public void Dispose()
+	{
+	}
+
+	[RuntimeInitializeOnLoadMethod]
+	internal static void Init()
+	{
+	}
+
+	internal static OVRTask<bool> CreateDeferredSpaceComponentStatusTask(ulong space, OVRPlugin.SpaceComponentType componentType, bool enabledDesired)
+	{
+		return default(OVRTask<bool>);
+	}
+
+	internal static void OnSpaceSetComponentStatusComplete(OVRDeserialize.SpaceSetComponentStatusCompleteData eventData)
 	{
 	}
 }

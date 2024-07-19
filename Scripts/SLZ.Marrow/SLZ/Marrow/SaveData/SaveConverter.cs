@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace SLZ.Marrow.SaveData
 {
-	public class SaveConverter<TSave, TProgression, TUnlocks> : JsonConverter<TSave> where TSave : class, ISave<TProgression, TUnlocks>, new() where TProgression : class, IProgression, new() where TUnlocks : class, IUnlocks, new()
+	public class SaveConverter<TSave, TPlayerSettings, TProgression, TUnlocks> : JsonConverter<TSave> where TSave : class, ISave<TPlayerSettings, TProgression, TUnlocks>, new() where TPlayerSettings : class, IPlayerSettings, new() where TProgression : class, IProgression, new() where TUnlocks : class, IUnlocks, new()
 	{
 		private readonly SaveFlags _flags;
 

@@ -4,8 +4,8 @@ using JetBrains.Annotations;
 
 namespace SLZ.Marrow.Console
 {
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	[MeansImplicitUse]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	[DebuggerDisplay("ConsoleCommand({ImplicitName})")]
 	public sealed class ConsoleCommandAttribute : Attribute
 	{

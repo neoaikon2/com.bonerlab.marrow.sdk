@@ -7,6 +7,8 @@ namespace Meta.XR
 	{
 		public const string featureId = "com.meta.openxr.feature.metaxr";
 
+		public bool userPresent => false;
+
 		protected override IntPtr HookGetInstanceProcAddr(IntPtr func)
 		{
 			return (IntPtr)0;

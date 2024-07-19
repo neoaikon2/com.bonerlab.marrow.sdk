@@ -98,8 +98,8 @@ public class OVRSceneManager : MonoBehaviour
 	[Tooltip("A prefab that will be used to instantiate any Plane found when querying the Scene model. If the anchor contains both Volume and Plane elements, Volume will be used instead.")]
 	public OVRSceneAnchor PlanePrefab;
 
-	[Tooltip("A prefab that will be used to instantiate any Volume found when querying the Scene model. This anchor may also contain Plane elements.")]
 	[FormerlySerializedAs("volumePrefab")]
+	[Tooltip("A prefab that will be used to instantiate any Volume found when querying the Scene model. This anchor may also contain Plane elements.")]
 	public OVRSceneAnchor VolumePrefab;
 
 	[FormerlySerializedAs("prefabOverrides")]
@@ -109,8 +109,8 @@ public class OVRSceneManager : MonoBehaviour
 	[Tooltip("Scene manager will only present the room(s) the user is currently in.")]
 	public bool ActiveRoomsOnly;
 
-	[FormerlySerializedAs("verboseLogging")]
 	[Tooltip("When enabled, verbose debug logs will be emitted.")]
+	[FormerlySerializedAs("verboseLogging")]
 	public bool VerboseLogging;
 
 	[Tooltip("The maximum number of scene anchors that will be updated each frame.")]
@@ -151,7 +151,7 @@ public class OVRSceneManager : MonoBehaviour
 
 	private List<OVRAnchor> _floorAnchors;
 
-	private readonly HashSet<Guid> _pendingLocatable;
+	private readonly HashSet<Guid> _floorsPendingLocalization;
 
 	private Dictionary<Guid, OVRAnchor> _roomAndFloorPairs;
 
@@ -170,7 +170,23 @@ public class OVRSceneManager : MonoBehaviour
 
 	internal LogForwarder? Verbose => null;
 
+	public event Action LoadSceneModelFailedPermissionNotGranted
+	{
+		[CompilerGenerated]
+		add
+		{
+		}
+		[CompilerGenerated]
+		remove
+		{
+		}
+	}
+
 	private void Awake()
+	{
+	}
+
+	private void Start()
 	{
 	}
 	internal void OnApplicationPause(bool isPaused)

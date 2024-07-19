@@ -26,8 +26,8 @@ namespace SLZ.Marrow.AI
 		[HideInInspector]
 		public EncounterProfile encounterProfile;
 
-		[FormerlySerializedAs("concurrent")]
 		[Tooltip("Maximum alive AI active at a time for this group before spawn")]
+		[FormerlySerializedAs("concurrent")]
 		public uint maxAlive;
 
 		[Tooltip("Maximum dead AI active at a time for this group before despawn")]

@@ -18,14 +18,14 @@ namespace SLZ.Marrow.SceneStreaming
 
 		public static StreamSession Session => null;
 
-		public static void Load(string levelBarcode, string loadLevelBarcode = "")
+		public static void Load(Barcode levelBarcode, Barcode loadLevelBarcode = null)
 		{
 		}
 
 		public static void Load(LevelCrateReference level, LevelCrateReference loadLevel)
 		{
 		}
-		public static UniTask LoadAsync(LevelCrateReference level, LevelCrateReference loadLevel)
+		public static UniTask LoadAsync(LevelCrateReference level, LevelCrateReference loadLevel = null)
 		{
 			return default(UniTask);
 		}

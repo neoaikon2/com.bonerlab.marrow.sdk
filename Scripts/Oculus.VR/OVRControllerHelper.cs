@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [HelpURL("https://developer.oculus.com/reference/unity/latest/class_o_v_r_controller_helper")]
-public class OVRControllerHelper : MonoBehaviour
+public class OVRControllerHelper : MonoBehaviour, OVRInputModule.InputSource
 {
 	private enum ControllerType
 	{
@@ -40,6 +41,8 @@ public class OVRControllerHelper : MonoBehaviour
 
 	private Animator m_animator;
 
+	public OVRRayHelper RayHelper;
+
 	private GameObject m_activeController;
 
 	private bool m_controllerModelsInitialized;
@@ -47,6 +50,8 @@ public class OVRControllerHelper : MonoBehaviour
 	private bool m_hasInputFocus;
 
 	private bool m_hasInputFocusPrev;
+
+	private bool m_isActive;
 
 	private ControllerType activeControllerType;
 
@@ -57,6 +62,14 @@ public class OVRControllerHelper : MonoBehaviour
 	private OVRInput.ControllerInHandState m_prevControllerInHandState;
 
 	private void Start()
+	{
+	}
+
+	private void OnEnable()
+	{
+	}
+
+	private void OnDisable()
 	{
 	}
 
@@ -73,6 +86,35 @@ public class OVRControllerHelper : MonoBehaviour
 	}
 
 	public void InputFocusLost()
+	{
+	}
+
+	public bool IsPressed()
+	{
+		return false;
+	}
+
+	public bool IsReleased()
+	{
+		return false;
+	}
+
+	public Transform GetPointerRayTransform()
+	{
+		return null;
+	}
+
+	public bool IsValid()
+	{
+		return false;
+	}
+
+	public bool IsActive()
+	{
+		return false;
+	}
+
+	public void UpdatePointerRay(OVRInputRayData rayData)
 	{
 	}
 }

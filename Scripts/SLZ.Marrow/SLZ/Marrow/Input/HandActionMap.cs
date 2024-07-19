@@ -29,7 +29,7 @@ namespace SLZ.Marrow.Input
 
 		private readonly List<Bone> _thumbFinger;
 
-		private Hand _hand;
+		private UnityEngine.XR.Hand _hand;
 
 		public HandActionMap(bool left)
 		{

@@ -46,12 +46,12 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
 		{
 		}
 
+		[Preserve]
 		[InputControlLayout(displayName = "HTC Vive Tracker (OpenXR)", commonUsages = new string[]
 		{
 			"Left Foot", "Right Foot", "Left Shoulder", "Right Shoulder", "Left Elbow", "Right Elbow", "Left Knee", "Right Knee", "Waist", "Chest",
 			"Camera", "Keyboard"
 		})]
-		[Preserve]
 		public class XRViveTracker : XRTracker
 		{
 			[InputControl(offset = 0u, aliases = new string[] { "device", "gripPose" }, usage = "Device", noisy = true)]
@@ -70,8 +70,8 @@ namespace UnityEngine.XR.OpenXR.Features.Interactions
 			[Preserve]
 			public new ButtonControl isTracked { get; private set; }
 
-			[InputControl(offset = 64u)]
 			[Preserve]
+			[InputControl(offset = 64u)]
 			public new IntegerControl trackingState { get; private set; }
 
 			protected override void FinishSetup()

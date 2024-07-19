@@ -14,8 +14,8 @@ namespace SLZ.Marrow.Interaction
 
 		private static float3 _forward;
 
-		[Header("Configuration")]
 		[SerializeField]
+		[Header("Configuration")]
 		private ContactCount _contactCount;
 
 		[SerializeField]
@@ -30,8 +30,8 @@ namespace SLZ.Marrow.Interaction
 		[SerializeField]
 		private Vector3 _anchor;
 
-		[SerializeField]
 		[Space(15f)]
+		[SerializeField]
 		private float _linearXDriveSpeed;
 
 		[SerializeField]
@@ -42,8 +42,8 @@ namespace SLZ.Marrow.Interaction
 		[Tooltip("Sets rotational twist motion on the configured axis")]
 		private ConfigurableJointMotion _angularXMotion;
 
-		[Range(-177f, 177f)]
 		[SerializeField]
+		[Range(-177f, 177f)]
 		private float _angularXMinLimit;
 
 		[Range(-177f, 177f)]
@@ -56,8 +56,8 @@ namespace SLZ.Marrow.Interaction
 		[SerializeField]
 		private SpringContactDrive _angularXDrive;
 
-		[SerializeField]
 		[Space(15f)]
+		[SerializeField]
 		private SplineJointMotion _linearYZMotion;
 
 		[SerializeField]
@@ -66,13 +66,13 @@ namespace SLZ.Marrow.Interaction
 		[SerializeField]
 		private SpringContactDrive _linearYZDrive;
 
-		[SerializeField]
-		[Space(15f)]
 		[Tooltip("Sets rotational swing motion on the configured axis")]
+		[Space(15f)]
+		[SerializeField]
 		private ConfigurableJointMotion _angularYZMotion;
 
-		[Range(0f, 177f)]
 		[SerializeField]
+		[Range(0f, 177f)]
 		private float _angularYZLimit;
 
 		[SerializeField]

@@ -1,10 +1,10 @@
 using System;
- 
+
 using System.Collections.Generic;
- 
+
 using UnityEngine;
 using UnityEditor;
- 
+
 using SLZ.MarrowEditor;
 using Matrix4x4 = UnityEngine.Matrix4x4;
 using Quaternion = UnityEngine.Quaternion;
@@ -106,6 +106,7 @@ namespace SLZ.VRMK
         private SerializedProperty dyingProp;
         private SerializedProperty deadProp;
         private SerializedProperty recoveryProp;
+        private SerializedProperty surfaceDataCardProp;
 #if false
 #endif
         private static GUIStyle toggleButtonStyle = null;
@@ -197,6 +198,7 @@ namespace SLZ.VRMK
             dyingProp = serializedObject.FindProperty(nameof(Avatar.dying));
             deadProp = serializedObject.FindProperty(nameof(Avatar.dead));
             recoveryProp = serializedObject.FindProperty(nameof(Avatar.recovery));
+            surfaceDataCardProp = serializedObject.FindProperty(nameof(Avatar.surfaceDataCard));
 #if false
 #endif
         }
@@ -361,6 +363,7 @@ namespace SLZ.VRMK
                 }
 
                 EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(surfaceDataCardProp, new GUIContent("SurfaceDataCard", "Data for the surface/physical material of the avatar"));
 #if false
 #endif
                 EditorGUILayout.Space();

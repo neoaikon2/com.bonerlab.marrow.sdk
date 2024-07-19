@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 
 public static class OVRPlugin
-{
+{	
 	private class GUID
 	{
 		public int a;
@@ -60,7 +60,11 @@ public static class OVRPlugin
 		Failure_SpaceMappingInsufficient = -2001,
 		Failure_SpaceLocalizationFailed = -2002,
 		Failure_SpaceNetworkTimeout = -2003,
-		Failure_SpaceNetworkRequestFailed = -2004
+		Failure_SpaceNetworkRequestFailed = -2004,
+		Failure_SpaceComponentNotSupported = -2005,
+		Failure_SpaceComponentNotEnabled = -2006,
+		Failure_SpaceComponentStatusPending = -2007,
+		Failure_SpaceComponentStatusAlreadySet = -2008
 	}
 
 	public enum LogLevel
@@ -269,7 +273,8 @@ public static class OVRPlugin
 	{
 		None = 0,
 		Normal = 0x2000,
-		Quality = 0x10000
+		Quality = 0x10000,
+		Automatic = 0x40000
 	}
 
 	public enum Step
@@ -3253,6 +3258,8 @@ public static class OVRPlugin
 		public VirtualKeyboardLocationType locationType;
 
 		public Posef pose;
+
+		public TrackingOrigin trackingOriginType;
 	}
 
 	public struct VirtualKeyboardLocationInfo
@@ -3262,6 +3269,8 @@ public static class OVRPlugin
 		public Posef pose;
 
 		public float scale;
+
+		public TrackingOrigin trackingOriginType;
 	}
 
 	public struct VirtualKeyboardCreateInfo
@@ -3295,6 +3304,8 @@ public static class OVRPlugin
 		public Posef inputPose;
 
 		public VirtualKeyboardInputStateFlags inputState;
+
+		public TrackingOrigin inputTrackingOriginType;
 	}
 
 	public struct VirtualKeyboardModelAnimationState
@@ -5181,6 +5192,9 @@ public static class OVRPlugin
 		public static extern Result ovrp_EnumerateSpaceSupportedComponents(ref ulong space, uint componentTypesCapacityInput, out uint componentTypesCountOutput, [In][Out] SpaceComponentType[] componentTypes);
 
 		[PreserveSig]
+		public unsafe static extern Result ovrp_EnumerateSpaceSupportedComponents(ref ulong space, uint componentTypesCapacityInput, out uint componentTypesCountOutput, SpaceComponentType* componentTypes);
+
+		[PreserveSig]
 		public static extern Result ovrp_SaveSpace(ref ulong space, SpaceStorageLocation location, SpaceStoragePersistenceMode mode, out ulong requestId);
 
 		[PreserveSig]
@@ -5569,6 +5583,22 @@ public static class OVRPlugin
 
 		[PreserveSig]
 		public static extern Result ovrp_QplSetConsent(Bool consent);
+	}
+
+	private static class OVRP_1_93_0
+	{
+		public static readonly Version version;
+
+		[PreserveSig]
+		public static extern Result ovrp_SetWideMotionModeHandPoses(Bool wideMotionModeHandPoses);
+
+		[PreserveSig]
+		public static extern Result ovrp_IsSetWideMotionModeHandPosesEnabled(ref Bool enabled);
+	}
+
+	private static class OVRP_1_94_0
+	{
+		public static readonly Version version;
 	}
 
 	public const bool isSupportedPlatform = true;
@@ -6355,6 +6385,16 @@ public static class OVRPlugin
 		return false;
 	}
 
+	public static bool SetWideMotionModeHandPoses(bool wideMotionModeFusionHandPoses)
+	{
+		return false;
+	}
+
+	public static bool IsWideMotionModeHandPosesEnabled()
+	{
+		return false;
+	}
+
 	public static EyeTextureFormat GetDesiredEyeTextureFormat()
 	{
 		return default(EyeTextureFormat);
@@ -7011,10 +7051,17 @@ public static class OVRPlugin
 		return default(Result);
 	}
 
+	[Obsolete("Use the overload of EnumerateSpaceSupportedComponents that accepts a pointer rather than a managed array.")]
 	public static bool EnumerateSpaceSupportedComponents(ulong space, out uint numSupportedComponents, SpaceComponentType[] supportedComponents)
 	{
 		numSupportedComponents = default(uint);
 		return false;
+	}
+
+	public unsafe static Result EnumerateSpaceSupportedComponents(ulong space, uint capacityInput, out uint countOutput, SpaceComponentType* buffer)
+	{
+		countOutput = default(uint);
+		return default(Result);
 	}
 
 	public static bool SaveSpace(ulong space, SpaceStorageLocation location, SpaceStoragePersistenceMode mode, out ulong requestId)
@@ -7059,6 +7106,12 @@ public static class OVRPlugin
 		return default(Result);
 	}
 
+	public unsafe static Result SaveSpaceList(ulong* spaces, uint numSpaces, SpaceStorageLocation location, out ulong requestId)
+	{
+		requestId = default(ulong);
+		return default(Result);
+	}
+
 	public static bool GetSpaceUserId(ulong spaceUserHandle, out ulong spaceUserId)
 	{
 		spaceUserId = default(ulong);
@@ -7077,6 +7130,12 @@ public static class OVRPlugin
 	}
 
 	public static Result ShareSpaces(NativeArray<ulong> spaces, NativeArray<ulong> userHandles, out ulong requestId)
+	{
+		requestId = default(ulong);
+		return default(Result);
+	}
+
+	public unsafe static Result ShareSpaces(ulong* spaces, uint numSpaces, ulong* userHandles, uint numUsers, out ulong requestId)
 	{
 		requestId = default(ulong);
 		return default(Result);

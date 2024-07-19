@@ -21,9 +21,9 @@ namespace SLZ.Marrow.Data
 		[Tooltip("Multiplier to hit damage math")]
 		public float damageMultiplier;
 
-		[Range(1f, 10f)]
 		[Header("Emission Settings")]
 		[Tooltip("Number of copies spawned")]
+		[Range(1f, 10f)]
 		public int count;
 
 		public EmissionType emissionType;

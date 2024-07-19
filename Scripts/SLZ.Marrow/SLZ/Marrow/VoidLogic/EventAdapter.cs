@@ -1,3 +1,4 @@
+using System;
 using SLZ.Algorithms.Unity;
 using SLZ.Marrow.Utilities;
 using UltEvents;
@@ -5,15 +6,20 @@ using UnityEngine;
 
 namespace SLZ.Marrow.VoidLogic
 {
-	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/EventAdapter")]
-	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Event Adapter")]
 	[Support(SupportFlags.Supported, "<b>Reminder</b>: Is there a better way to do this?")]
-	public sealed class EventAdapter : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, IVoidLogicActuator
+	[AddComponentMenu("VoidLogic/Sinks/VoidLogic Event Adapter")]
+	[HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/VoidLogic/EventAdapter")]
+	public sealed class EventAdapter : MonoBehaviour, IVoidLogicSink, IVoidLogicNode, ISerializationCallbackReceiver, IVoidLogicActuator
 	{
+		[SerializeField]
+		[Obsolete("Replace with `_previousConnection`")]
 		[Tooltip("Previous node in the chain")]
 		[Interface(typeof(IVoidLogicSource), false)]
-		[SerializeField]
 		private MonoBehaviour _previousNode;
+
+		[SerializeField]
+		[Tooltip("Previous node in the chain")]
+		private OutputPortReference _previousConnection;
 
 		[SerializeField]
 		private float lowThreshold;
@@ -21,8 +27,8 @@ namespace SLZ.Marrow.VoidLogic
 		[SerializeField]
 		private float highThreshold;
 
-		[Tooltip("When the input value changes (EXPENSIVE, runs all callbacks on every value update)")]
 		[Header("Events")]
+		[Tooltip("When the input value changes (EXPENSIVE, runs all callbacks on every value update)")]
 		public UltEvent<EventAdapter, IVoidLogicSource, float> InputUpdated;
 
 		[Tooltip("When the input value rises above the high threshold")]
@@ -52,6 +58,14 @@ namespace SLZ.Marrow.VoidLogic
 		public int InputCount => 0;
 
 		public PortMetadata PortMetadata => default(PortMetadata);
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnBeforeSerialize()
+		{
+		}
+
+		private void UnityEngine_002EISerializationCallbackReceiver_002EOnAfterDeserialize()
+		{
+		}
 
 		private void Awake()
 		{
@@ -97,20 +111,30 @@ namespace SLZ.Marrow.VoidLogic
 		{
 		}
 
-		public bool TryGetInputAtIndex(uint idx, out IVoidLogicSource input)
+		public bool TryGetInputConnection(uint inputIndex, out OutputPortReference connectedPort)
 		{
-			input = null;
+			connectedPort = default(OutputPortReference);
 			return false;
 		}
 
-		public bool TrySetInputAtIndex(uint idx, IVoidLogicSource input)
+		public bool TryConnectPortToInput(OutputPortReference output, uint inputIndex)
 		{
 			return false;
 		}
 
 		public void Actuate(ref NodeState nodeState)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
+		}
+
+		public void OnBeforeSerialize()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnAfterDeserialize()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

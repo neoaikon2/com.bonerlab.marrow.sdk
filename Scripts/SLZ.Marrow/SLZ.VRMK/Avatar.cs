@@ -5,6 +5,7 @@ using UnityEngine;
 using SLZ.Data;
 using System;
 using System.Linq;
+using SLZ.Marrow.Warehouse;
 
  
 
@@ -698,6 +699,7 @@ namespace SLZ.VRMK
         public AudioVarianceData dying;
         public AudioVarianceData dead;
         public AudioVarianceData recovery;
+        public DataCardReference<SurfaceDataCard> surfaceDataCard;
         protected Vector3 _t7Local;
         protected Vector3 _l1Local;
         protected Vector3 _l3Local;
@@ -855,6 +857,30 @@ namespace SLZ.VRMK
                     bodyMeshes = skinnedMeshes.Where(skinnedMesh => !skinnedMesh.name.Contains("head", StringComparison.OrdinalIgnoreCase)).ToArray();
                 }
             }
+        }
+
+        public virtual void Awake()
+        {
+        }
+
+        public virtual void PrecomputeAvatar(float eyeHeight)
+        {
+        }
+
+        public virtual void RefreshBodyMeasurements(SLZ.VRMK.Avatar calibrationAvatar)
+        {
+        }
+
+        public virtual void SetPlayerWingspan(float wingspan, float height)
+        {
+        }
+
+        public virtual void SetPlayerInseam(float inseem, float height)
+        {
+        }
+
+        public virtual void RefreshBodyMeasurements()
+        {
         }
     }
 }

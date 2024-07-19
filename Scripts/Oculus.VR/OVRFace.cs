@@ -4,12 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(SkinnedMeshRenderer))]
 public class OVRFace : MonoBehaviour
 {
-	[SerializeField]
 	[Tooltip("The OVRFaceExpressions Component to fetch the Face Tracking weights from that are to be applied")]
+	[SerializeField]
 	protected internal OVRFaceExpressions _faceExpressions;
 
-	[SerializeField]
 	[Tooltip("A multiplier to the weights read from the OVRFaceExpressions to exaggerate facial expressions")]
+	[SerializeField]
 	protected internal float _blendShapeStrengthMultiplier;
 
 	private SkinnedMeshRenderer _skinnedMeshRenderer;
