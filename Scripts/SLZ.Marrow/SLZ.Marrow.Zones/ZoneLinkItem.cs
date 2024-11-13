@@ -1,4 +1,3 @@
-using SLZ.Marrow.Interaction;
 using System;
  
 using UnityEngine;
@@ -18,6 +17,27 @@ namespace SLZ.Marrow.Zones
         protected ZoneLink _zoneLink;
         [EnumFlags, SerializeField]
         protected EventTypes _eventTypes = EventTypes.Primary | EventTypes.Secondary;
+
+        protected virtual void OnEnter(SLZ.Marrow.Interaction.MarrowEntity activatorEntity) {}
+        protected virtual void OnExit(SLZ.Marrow.Interaction.MarrowEntity activatorEntity) {}
+        protected virtual void OnEnable() { }
+        protected virtual void OnDisable() { }
+        protected virtual void OnPrimaryEnter(SLZ.Marrow.Interaction.MarrowEntity activatorEntity)
+        {
+        }
+
+        protected virtual void OnPrimaryExit(SLZ.Marrow.Interaction.MarrowEntity activatorEntity)
+        {
+        }
+
+        protected virtual void OnSecondaryEnter(SLZ.Marrow.Interaction.MarrowEntity activatorEntity)
+        {
+        }
+
+        protected virtual void OnSecondaryExit(SLZ.Marrow.Interaction.MarrowEntity activatorEntity)
+        {
+        }
+
 #if UNITY_EDITOR
         protected virtual void Reset()
         {
@@ -27,36 +47,5 @@ namespace SLZ.Marrow.Zones
             _zoneLink = transform.parent.GetComponent<ZoneLink>();
         }
 #endif
-        protected virtual void OnEnable()
-        {
-        }
-
-        protected virtual void OnDisable()
-        {
-        }
-
-        protected virtual void OnEnter(MarrowEntity activatorEntity)
-        {
-        }
-
-        protected virtual void OnExit(MarrowEntity activatorEntity)
-        {
-        }
-
-        protected virtual void OnSecondaryEnter(MarrowEntity activatorEntity)
-        {
-        }
-
-        protected virtual void OnPrimaryEnter(MarrowEntity activatorEntity)
-        {
-        }
-
-        protected virtual void OnPrimaryExit(MarrowEntity activatorEntity)
-        {
-        }
-
-        protected virtual void OnSecondaryExit(MarrowEntity activatorEntity)
-        {
-        }
     }
 }

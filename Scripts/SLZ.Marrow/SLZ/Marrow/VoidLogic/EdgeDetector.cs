@@ -33,6 +33,10 @@ namespace SLZ.Marrow.VoidLogic
 
 		public EdgeDetector(float lowThreshold = 0.05f, float highThreshold = 0.95f, TriggerBehavior triggerBehavior = TriggerBehavior.OnRisingEdge, float maximumRepeatRate = 60f)
 		{
+			LowThreshold = lowThreshold;
+			HighThreshold = highThreshold;
+			TriggerBehavior = triggerBehavior;
+			MaximumRepeatRate = maximumRepeatRate;
 		}
 
 		private EdgeType Tick(float nextInput)

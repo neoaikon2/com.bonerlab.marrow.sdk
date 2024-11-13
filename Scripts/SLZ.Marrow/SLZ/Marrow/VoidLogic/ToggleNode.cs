@@ -20,6 +20,12 @@ namespace SLZ.Marrow.VoidLogic
 
 		public override PortMetadata PortMetadata => default(PortMetadata);
 
+		public ToggleNode()
+		{
+			SetEdgeDetector = new EdgeDetector();
+			ResetEdgeDetector = new EdgeDetector();
+		}
+
 		public override void Calculate(ref NodeState nodeState)
 		{
 		}

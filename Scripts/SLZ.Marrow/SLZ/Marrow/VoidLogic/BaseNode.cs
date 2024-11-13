@@ -19,7 +19,7 @@ namespace SLZ.Marrow.VoidLogic
 		[Tooltip("Previous node(s) in the chain")]
 		protected internal OutputPortReference[] _previousConnections;
 
-		[field: ReadOnly(false)]
+		//[field: ReadOnly(false)]
 		[field: SerializeField]
 		public VoidLogicSubgraph Subgraph { get; set; }
 

@@ -15,7 +15,7 @@ namespace SLZ.Marrow.VoidLogic
 		private static readonly PortMetadata _portMetadata;
 
 		[field: SerializeField]
-		[field: ReadOnly(false)]
+		//[field: ReadOnly(false)]
 		public VoidLogicSubgraph Subgraph { get; set; }
 
 		public int OutputCount => 0;

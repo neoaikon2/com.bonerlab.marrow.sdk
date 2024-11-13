@@ -52,7 +52,7 @@ namespace SLZ.Marrow.VoidLogic
 		private static readonly PortMetadata _portMetadata;
 
 		[field: SerializeField]
-		[field: ReadOnly(false)]
+		//[field: ReadOnly(false)]
 		public VoidLogicSubgraph Subgraph { get; set; }
 
 		public int InputCount => 0;
@@ -124,17 +124,17 @@ namespace SLZ.Marrow.VoidLogic
 
 		public void Actuate(ref NodeState nodeState)
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 
 		public void OnBeforeSerialize()
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 
 		public void OnAfterDeserialize()
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 	}
 }
